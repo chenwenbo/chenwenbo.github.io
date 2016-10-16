@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>Spring异常体系 | 尔东陈</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/pure-min.css"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">Spring异常体系</h1><a id="logo" href="/.">尔东陈</a><p class="description">但行好事，莫问前程。</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/time-line/"><i class="icon-archive"> time-line</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">Spring异常体系</h1><div class="post-meta">2016-01-19 | </div><div class="post-content"><blockquote>
+<p>总结：Spring的异常体系会将所有的checkException转换为RunTimeException,而DataAccessException就是这类runTimeException的顶级异常类。所以我们的代码中不用显示的进行try catch处理。只需要在合适的地方进行catch处理。这种方式减少了代码的侵入性。</p>
+</blockquote>
+<p>通常在 Dao 层将所有异常都转嫁到 Spring 的 RuntimeException 体系中来　－DataAccessException</p>
+<p> Spring的DAO框架没有抛出与特定技术相关的异常，例如SQLException或HibernateException，抛出的异常都是 与特定技术无关的org.springframework.dao.DataAccessException类的子类，避免系统与某种特殊的持久层实现耦 合在一起。</p>
+<p> DataAccessException是RuntimeException，是一个无须检测的异常，不要求代码去处理这类异常，遵循了 Spring的一般理念：异常检测会使代码到处是不相关的catch或throws语句，使代码杂乱无章；并且 NestedRuntimeException的子类，是可以通过NestedRuntimeException的getCause（）方法获得导致该异 常的另一个异常。</p>
+<hr>
+<p> Spring的异常分类有：</p>
+<table>
+<thead>
+<tr>
+<th>异常</th>
+<th style="text-align:right">何时抛出</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CleanupFailureDataAccessException</td>
+<td style="text-align:right">一项操作成功地执行，但在释放数据库资源时发生异常（例如，关闭一个Connection）</td>
+</tr>
+<tr>
+<td>DataAccessResourceFailureException</td>
+<td style="text-align:right">数据访问资源彻底失败，例如不能连接数据库</td>
+</tr>
+<tr>
+<td>DataIntegrityViolationException</td>
+<td style="text-align:right">Insert或Update数据时违反了完整性，例如违反了惟一性限制</td>
+</tr>
+<tr>
+<td>DataRetrievalFailureException</td>
+<td style="text-align:right">某些数据不能被检测到，例如不能通过关键字找到一条记录</td>
+</tr>
+<tr>
+<td>DeadlockLoserDataAccessException</td>
+<td style="text-align:right">当前的操作因为死锁而失败</td>
+</tr>
+<tr>
+<td>IncorrectUpdateSemanticsDataAccessException</td>
+<td style="text-align:right">Update时发生某些没有预料到的情况，例如更改超过预期的记录数。当这个异常被抛出时，执行着的事务不会被回滚</td>
+</tr>
+<tr>
+<td>InvalidDataAccessApiusageException</td>
+<td style="text-align:right">一个数据访问的JAVA API没有正确使用，例如必须在执行前编译好的查询编译失败了</td>
+</tr>
+<tr>
+<td>invalidDataAccessResourceUsageException</td>
+<td style="text-align:right">错误使用数据访问资源，例如用错误的SQL语法访问关系型数据库</td>
+</tr>
+<tr>
+<td>OptimisticLockingFailureException</td>
+<td style="text-align:right">乐观锁的失败。这将由ORM工具或用户的DAO实现抛出</td>
+</tr>
+<tr>
+<td>TypemismatchDataAccessException</td>
+<td style="text-align:right">Java类型和数据类型不匹配，例如试图把String类型插入到数据库的数值型字段中</td>
+</tr>
+<tr>
+<td>UncategorizedDataAccessException</td>
+<td style="text-align:right">有错误发生，但无法归类到某一更为具体的异常中</td>
+</tr>
+</tbody>
+</table>
+<p>Spring的DAO异常层次是如此的细致缜密，服务对象能够精确地选择需要捕获哪些异常，捕获的异常对用户更有用的信息，哪些异常可以让她继续在调用堆栈中向上传递。</p>
+<p>于是，我们在dao中只需要抛出这个运行时异常，我们就可以在<br><figure class="highlight gherkin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"> /<span class="keyword">*</span><span class="keyword">*</span></span><br><span class="line"> <span class="keyword">*</span>  根据时间获取日KPI数据</span><br><span class="line"> <span class="keyword">*</span> <span class="comment">@param date 日期</span></span><br><span class="line"> <span class="keyword">*</span> <span class="comment">@return </span></span><br><span class="line"> <span class="keyword">*</span>/</span><br><span class="line">public List<span class="variable">&lt;KPIDataBean&gt;</span> getKPIOfDayDataByDate(String date) throws DataAccessException;</span><br></pre></td></tr></table></figure></p>
+<p>并在它的实现类中也抛出这么个异常。<br>这样，在调用这个方法的时候，我们捕获这个异常即可：<br><figure class="highlight golo"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="typename">list</span> = kpiDao.getKPIOfDayDataByDate(date);</span><br><span class="line">&#125; <span class="keyword">catch</span>(DataAccessException e) &#123;</span><br><span class="line">    System.out.<span class="keyword">println</span>(<span class="string">"test:"</span> + e.getMessage());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>这样就可以捕获相应的异常了。<br>这是打印出来的信息<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">test</span><span class="pseudo">:nested</span> <span class="tag">exception</span> <span class="tag">is</span> <span class="tag">org</span><span class="class">.apache</span><span class="class">.ibatis</span><span class="class">.exceptions</span><span class="class">.PersistenceException</span>: </span><br><span class="line"><span class="tag">Error</span> <span class="tag">querying</span> <span class="tag">database</span>.  <span class="tag">Cause</span>: <span class="tag">org</span><span class="class">.springframework</span><span class="class">.jdbc</span><span class="class">.CannotGetJdbcConnectionException</span>: <span class="tag">Could</span> <span class="tag">not</span> <span class="tag">get</span> <span class="tag">JDBC</span> <span class="tag">Connection</span>; <span class="tag">nested</span> <span class="tag">exception</span> <span class="tag">is</span> <span class="tag">org</span><span class="class">.apache</span><span class="class">.commons</span><span class="class">.dbcp</span><span class="class">.SQLNestedException</span>: <span class="tag">Cannot</span> <span class="tag">create</span> <span class="tag">PoolableConnectionFactory</span> (<span class="tag">Communications</span> <span class="tag">link</span> <span class="tag">failure</span></span><br></pre></td></tr></table></figure></p>
+</div><div class="tags"></div><div class="post-nav"><a href="/2016/01/19/Junit使用/" class="pre"><i class="icon-previous">Junit使用</i></a><a href="/2016/01/18/unCheckException清单/" class="next">unCheckException清单<i class="icon-next"></i></a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/JAVA/" style="font-size: 15px;">JAVA</a> <a href="/tags/SVN/" style="font-size: 15px;">SVN</a> <a href="/tags/SQL/" style="font-size: 15px;">SQL</a> <a href="/tags/习惯养成计划第一期/" style="font-size: 15px;">习惯养成计划第一期</a> <a href="/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/Java-Equals-HashCode/">Java hashCode & equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/README/">README</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Java类和对象的初始化/">Java类和对象的初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/Java成员变量和局部变量/">Java成员变量和局部变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/web-exception-handle/">web_exception_handle</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/Spring-bean-load/">Spring_bean_load</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/zsh-feature/">zsh_feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java-Volatile/">Java_Volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java基本数据类型/">Java基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/Java集合线程安全/">Java集合线程安全</a></li></ul></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://weibo.com/2316099870" title="微博" target="_blank">微博</a><ul></ul><a href="https://www.zhihu.com/people/chen-wen-bo-21" title="知乎" target="_blank">知乎</a><ul></ul><a href="https://github.com/chenwenbo" title="github" target="_blank">github</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">尔东陈.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"></div></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>vim笔记 | 尔东陈</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/pure-min.css"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">vim笔记</h1><a id="logo" href="/.">尔东陈</a><p class="description">但行好事，莫问前程。</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/time-line/"><i class="icon-archive"> time-line</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">vim笔记</h1><div class="post-meta">2016-06-23 | </div><div class="post-content"><h3 id="vim_u7684_u4E09_u79CD_u6A21_u5F0F"><a href="#vim_u7684_u4E09_u79CD_u6A21_u5F0F" class="headerlink" title="vim的三种模式"></a>vim的三种模式</h3><p>插入模式 ：</p>
+<ul>
+<li>i(在字符之前操作) </li>
+<li>I(在行首操作) </li>
+<li>a（在字符之后操作）</li>
+<li>A（在行尾操作）</li>
+</ul>
+<p>命令模式 ：</p>
+<ul>
+<li>ctrl + { </li>
+<li>esc</li>
+</ul>
+<p>选择模式 ：</p>
+<ul>
+<li>v</li>
+</ul>
+<h3 id="u5149_u6807_u79FB_u52A8"><a href="#u5149_u6807_u79FB_u52A8" class="headerlink" title="光标移动"></a>光标移动</h3><ul>
+<li>上 k</li>
+<li>下 j</li>
+<li>左 g</li>
+<li>右 l</li>
+</ul>
+<h3 id="u5355_u8BCD_u79FB_u52A8"><a href="#u5355_u8BCD_u79FB_u52A8" class="headerlink" title="单词移动"></a>单词移动</h3><ul>
+<li>w : 移动到单词的第一个字符</li>
+<li>e : 移动到单词的最后一个字符</li>
+<li>b : 移动到上一个单词的首字母</li>
+</ul>
+<h3 id="u6570_u5B57_u7684_u4F7F_u7528"><a href="#u6570_u5B57_u7684_u4F7F_u7528" class="headerlink" title="数字的使用"></a>数字的使用</h3><p>数字代表操作的次数<br>3w: 按下三次w键</p>
+<h3 id="u91CD_u590D_u8F93_u5165_u6587_u672C"><a href="#u91CD_u590D_u8F93_u5165_u6587_u672C" class="headerlink" title="重复输入文本"></a>重复输入文本</h3><p>数字+i+文本+命令模式键<br>eg:4ihello+ctrl+{</p>
+<h3 id="u5B57_u7B26_u67E5_u8BE2"><a href="#u5B57_u7B26_u67E5_u8BE2" class="headerlink" title="字符查询"></a>字符查询</h3><ul>
+<li>f:往后查询字符</li>
+<li>F:往前查询字符</li>
+</ul>
+<h3 id="u7279_u6B8A_u7B26_u53F7_u67E5_u8BE2"><a href="#u7279_u6B8A_u7B26_u53F7_u67E5_u8BE2" class="headerlink" title="特殊符号查询"></a>特殊符号查询</h3><p>% 可以匹配 ( or { or [,并跳转到相应的位置，但是这些字符必须是成对出现。</p>
+<h3 id="u884C_u9996_u548C_u884C_u5C3E"><a href="#u884C_u9996_u548C_u884C_u5C3E" class="headerlink" title="行首和行尾"></a>行首和行尾</h3><ul>
+<li>0 : 行首</li>
+<li>^ : 光标所在行的第一个单词</li>
+<li>$ : 行尾</li>
+</ul>
+<h3 id="u4E0A_u4E00_u4E2A_u6BB5_u843D/_u53E5_u5B50__u4E0B_u4E00_u4E2A_u6BB5_u843D/_u53E5_u5B50"><a href="#u4E0A_u4E00_u4E2A_u6BB5_u843D/_u53E5_u5B50__u4E0B_u4E00_u4E2A_u6BB5_u843D/_u53E5_u5B50" class="headerlink" title="上一个段落/句子 下一个段落/句子"></a>上一个段落/句子 下一个段落/句子</h3><p>*｛ : 上一个段落 </p>
+<ul>
+<li>} : 下一个段落  </li>
+<li>( : 上一个句子  </li>
+<li>) : 下一个句子  </li>
+</ul>
+<h3 id="u67E5_u8BE2_u5149_u6807_u6240_u5728_u7684_u5355_u8BCD"><a href="#u67E5_u8BE2_u5149_u6807_u6240_u5728_u7684_u5355_u8BCD" class="headerlink" title="查询光标所在的单词"></a>查询光标所在的单词</h3><ul>
+<li>* ：查询上一个单词</li>
+<li># ：查询下一个单词</li>
+</ul>
+<h3 id="u8DF3_u8F6C_u5230_u6587_u4EF6_u7684_u5F00_u59CB_u548C_u7ED3_u5C3E"><a href="#u8DF3_u8F6C_u5230_u6587_u4EF6_u7684_u5F00_u59CB_u548C_u7ED3_u5C3E" class="headerlink" title="跳转到文件的开始和结尾"></a>跳转到文件的开始和结尾</h3><ul>
+<li>gg : 跳转到文件的开始</li>
+<li>G ：跳转到文件的结尾</li>
+</ul>
+<h3 id="u5229_u7528_n/N_u8FDB_u884C_u67E5_u8BE2_u6587_u672C"><a href="#u5229_u7528_n/N_u8FDB_u884C_u67E5_u8BE2_u6587_u672C" class="headerlink" title="利用 n/N进行查询文本"></a>利用 n/N进行查询文本</h3><p>命令模式下按下/进入查询模式，输入你想查询的文本,按下enter键，将会进行查询，同时按下n/N将会查询上一个或者下一个。</p>
+<h3 id="u63D2_u5165_u65B0_u7684_u4E00_u884C"><a href="#u63D2_u5165_u65B0_u7684_u4E00_u884C" class="headerlink" title="插入新的一行"></a>插入新的一行</h3><ul>
+<li>o : 当前行下方插入一行</li>
+<li>O : 当前行上方插入一行</li>
+</ul>
+<h3 id="u5220_u9664_u5B57_u7B26"><a href="#u5220_u9664_u5B57_u7B26" class="headerlink" title="删除字符"></a>删除字符</h3><ul>
+<li>x : 向后删除</li>
+<li>X : 向前删除</li>
+</ul>
+<h3 id="u66FF_u6362_u5F53_u524D_u5149_u6807_u7684_u5B57_u7B26"><a href="#u66FF_u6362_u5F53_u524D_u5149_u6807_u7684_u5B57_u7B26" class="headerlink" title="替换当前光标的字符"></a>替换当前光标的字符</h3><p>r+替换的字符</p>
+<h3 id="u5220_u9664_u547D_u4EE4"><a href="#u5220_u9664_u547D_u4EE4" class="headerlink" title="删除命令"></a>删除命令</h3><ul>
+<li>dw : 删除单词到下一个单词首字符 dW(向前删除) </li>
+<li>de : 删除单词到最后一个字符 dE(向前删除)</li>
+<li>dd : 删除一行 </li>
+</ul>
+<h3 id="u91CD_u590D_u4E0A_u4E00_u4E2A_u547D_u4EE4"><a href="#u91CD_u590D_u4E0A_u4E00_u4E2A_u547D_u4EE4" class="headerlink" title="重复上一个命令"></a>重复上一个命令</h3><p>. (点) </p>
+<h3 id="u9009_u62E9_u6A21_u5F0F"><a href="#u9009_u62E9_u6A21_u5F0F" class="headerlink" title="选择模式"></a>选择模式</h3><ul>
+<li>v:进入选择模式</li>
+<li>ve/vw:以单词向后选择</li>
+<li>d:删除选中的单词</li>
+</ul>
+<h3 id="u6587_u4EF6_u64CD_u4F5C_u547D_u4EE4"><a href="#u6587_u4EF6_u64CD_u4F5C_u547D_u4EE4" class="headerlink" title="文件操作命令"></a>文件操作命令</h3><ul>
+<li>：w 保存</li>
+<li>：q  退出保存</li>
+<li>：q! 退出不保存</li>
+<li>u 回退操作</li>
+</ul>
+</div><div class="tags"></div><div class="post-nav"><a href="/2016/06/24/vim-学习笔记2/" class="pre"><i class="icon-previous">vim_学习笔记2</i></a><a href="/2016/06/22/Java平台和内存管理/" class="next">Java平台和内存管理<i class="icon-next"></i></a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/JAVA/" style="font-size: 15px;">JAVA</a> <a href="/tags/SVN/" style="font-size: 15px;">SVN</a> <a href="/tags/SQL/" style="font-size: 15px;">SQL</a> <a href="/tags/习惯养成计划第一期/" style="font-size: 15px;">习惯养成计划第一期</a> <a href="/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/Java-Equals-HashCode/">Java hashCode & equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/README/">README</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Java类和对象的初始化/">Java类和对象的初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/Java成员变量和局部变量/">Java成员变量和局部变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/web-exception-handle/">web_exception_handle</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/Spring-bean-load/">Spring_bean_load</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/zsh-feature/">zsh_feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java-Volatile/">Java_Volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java基本数据类型/">Java基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/Java集合线程安全/">Java集合线程安全</a></li></ul></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://weibo.com/2316099870" title="微博" target="_blank">微博</a><ul></ul><a href="https://www.zhihu.com/people/chen-wen-bo-21" title="知乎" target="_blank">知乎</a><ul></ul><a href="https://github.com/chenwenbo" title="github" target="_blank">github</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">尔东陈.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"></div></body></html>

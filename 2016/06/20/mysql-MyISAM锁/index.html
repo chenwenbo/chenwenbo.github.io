@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>mysql_MyISAM锁 | 尔东陈</title><link rel="stylesheet" type="text/css" href="/css/normalize.css"><link rel="stylesheet" type="text/css" href="/css/pure-min.css"><link rel="stylesheet" type="text/css" href="/css/grids-responsive-min.css"><link rel="stylesheet" type="text/css" href="/css/style.css"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">mysql_MyISAM锁</h1><a id="logo" href="/.">尔东陈</a><p class="description">但行好事，莫问前程。</p></div><div id="nav-menu"><a href="/." class="current"><i class="icon-home"> 首页</i></a><a href="/archives/"><i class="icon-archive"> 归档</i></a><a href="/time-line/"><i class="icon-archive"> time-line</i></a><a href="/about/"><i class="icon-about"> 关于</i></a><a href="/atom.xml"><i class="icon-rss"> 订阅</i></a></div></div><div id="layout" class="pure-g"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post post-page"><h1 class="post-title">mysql_MyISAM锁</h1><div class="post-meta">2016-06-20 | </div><div class="post-content"><p><a href="http://hudeyong926.iteye.com/blog/1489929" target="_blank" rel="external">http://hudeyong926.iteye.com/blog/1489929</a></p>
+<blockquote>
+<p>锁是计算机协调多个进程或者线程并发访问某一资源的机制。在数据库中，除了传统的计算资源（cpu、ram、i/o等)的争用外，数据也是一种供多用户共享的资源。如何保证数据并发访问的一致性、有效性是所有数据库必须解决的一个问题，锁冲突也是影响数据库并发访问性能的一个重要因素。从这个角度上来说，锁对数据库而言尤其重要，也更加复杂。</p>
+</blockquote>
+<h3 id="mysql_u9501_u6982_u8FF0"><a href="#mysql_u9501_u6982_u8FF0" class="headerlink" title="mysql锁概述"></a>mysql锁概述</h3><p>mysql的锁机制比较简单，其显著特点就是不同的存储引擎支持不同的锁机制。</p>
+<ul>
+<li>MyISAM和MEMORY存储采用的是表级锁（table-level locking）</li>
+<li>BDB存储引擎采用的是页面锁（page-level locking）,但也支持表级锁（已经被innodb取代）</li>
+<li>InnoDB存储引擎既支持行级锁 也 支持表级锁，默认情况下采用行级锁。</li>
+</ul>
+<h3 id="u4E09_u79CD_u9501_u7684_u6982_u8FF0"><a href="#u4E09_u79CD_u9501_u7684_u6982_u8FF0" class="headerlink" title="三种锁的概述"></a>三种锁的概述</h3><ul>
+<li>表级锁：开销小、加锁快；不会出现死锁。锁定粒度大，发生锁冲突的概率最高，并发率最低。</li>
+<li>行级锁：开销大、加锁慢；会出现死锁。锁定粒度最小，发生冲突的概率最低，并发率最高。</li>
+<li>页面锁：开销和加锁时间介于表锁和行锁之间；会出现死锁；锁定粒度介于表级锁和行级锁之间，并发率一般。</li>
+</ul>
+<h3 id="u7528_u9014"><a href="#u7528_u9014" class="headerlink" title="用途"></a>用途</h3><ul>
+<li>表级锁：适合以查询为主，只有少量的按索引条件更新的应用，如web应用。</li>
+<li>行级锁： 适合有大量按索引条件并发更新少量不同的数据，同事又有并发查询的应用，如一些在线事务处理系统。</li>
+</ul>
+<h3 id="MyISAM_u8868_u9501"><a href="#MyISAM_u8868_u9501" class="headerlink" title="MyISAM表锁"></a>MyISAM表锁</h3><p>MyISAM存储引擎只支持表锁</p>
+<h3 id="MyISAM_u8868_u7EA7_u9501_u7684_u6A21_u5F0F"><a href="#MyISAM_u8868_u7EA7_u9501_u7684_u6A21_u5F0F" class="headerlink" title="MyISAM表级锁的模式"></a>MyISAM表级锁的模式</h3><ul>
+<li>表共享读锁（Table Read Lock）</li>
+<li>表独占写锁 （Table Write Lock）</li>
+</ul>
+<p>MyISAM表的读操作，不会阻塞其他用户对同一表的读请求，但会阻塞对同一表的写请求<br>MyISAM表的写操作，则会阻塞其他用户对同一表的读和写操作<br>MyISAM表的读操作与写操作之间，以及写操作之间是串行的，当一个线程获得对一个表的写锁后，只有持有锁的线程可以对表进行更新操作。其他线程的读、写操作都会等待，直到锁被释放为止。</p>
+<h3 id="u5E76_u53D1_u63D2_u5165"><a href="#u5E76_u53D1_u63D2_u5165" class="headerlink" title="并发插入"></a>并发插入</h3><p>MyISAM存储引擎有一个系统变量concurrent_insert，专门用以控制其并发插入的行为，其值分别可以为0、1或2。</p>
+<ul>
+<li>当concurrent_insert设置为0时，不允许并发插入。</li>
+<li>当concurrent_insert设置为1时，如果MyISAM表中没有空洞（即表的中间没有被删除的行），MyISAM允许在一个进程读表的同时，另一个进程从表尾插入记录。这也是MySQL的默认设置。</li>
+<li>当concurrent_insert设置为2时，无论MyISAM表中有没有空洞，都允许在表尾并发插入记录。</li>
+</ul>
+<p>可以利用MyISAM存储引擎的并发插入特性，来解决应 用中对同一表查询和插入的锁争用。例如，将concurrent_insert系统变量设为2，总是允许并发插入；同时，通过定期在系统空闲时段执行 OPTIMIZE TABLE语句来整理空间碎片，收回因删除记录而产生的中间空洞。有关OPTIMIZE TABLE语句的详细介绍，可以参见第18章中“两个简单实用的优化方法”一节的内容。</p>
+<h3 id="MyISAM_u7684_u9501_u8C03_u5EA6"><a href="#MyISAM_u7684_u9501_u8C03_u5EA6" class="headerlink" title="MyISAM的锁调度"></a>MyISAM的锁调度</h3><p>前面讲过，MyISAM存储引擎的读锁和写锁是互斥的，读写操作是串行的。那么，一个进程请求某个 MyISAM表的读锁，同时另一个进程也请求同一表的写锁，MySQL如何处理呢？答案是写进程先获得锁。不仅如此，即使读请求先到锁等待队列，写请求后 到，写锁也会插到读锁请求之前！这是因为MySQL认为写请求一般比读请求要重要。这也正是MyISAM表不太适合于有大量更新操作和查询操作应用的原 因，因为，大量的更新操作会造成查询操作很难获得读锁，从而可能永远阻塞。这种情况有时可能会变得非常糟糕！幸好我们可以通过一些设置来调节MyISAM 的调度行为。</p>
+<ul>
+<li>通过指定启动参数low-priority-updates，使MyISAM引擎默认给予读请求以优先的权利。</li>
+<li>通过执行命令SET LOW_PRIORITY_UPDATES=1，使该连接发出的更新请求优先级降低。</li>
+<li>通过指定INSERT、UPDATE、DELETE语句的LOW_PRIORITY属性，降低该语句的优先级。</li>
+</ul>
+</div><div class="tags"></div><div class="post-nav"><a href="/2016/06/22/mysql分组之后拿到分组中最小-最大的一条/" class="pre"><i class="icon-previous">mysql分组之后拿到分组中最小/最大的一条</i></a><a href="/2016/06/17/mysqll-concat函数-乱码问题/" class="next">mysqll_concat函数_乱码问题<i class="icon-next"></i></a></div></div></div></div><div class="pure-u-1-4"><div id="sidebar"><div class="widget"><form action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank" class="search-form"><input type="text" name="q" maxlength="20" placeholder="Search" class="search-form-input"/><input type="hidden" name="sitesearch" value="http://yoursite.com"/></form></div><div class="widget"><div class="widget-title">分类</div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/工具/">工具</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/编程/">编程</a></li></ul></div><div class="widget"><div class="widget-title">标签</div><div class="tagcloud"><a href="/tags/JAVA/" style="font-size: 15px;">JAVA</a> <a href="/tags/SVN/" style="font-size: 15px;">SVN</a> <a href="/tags/SQL/" style="font-size: 15px;">SQL</a> <a href="/tags/习惯养成计划第一期/" style="font-size: 15px;">习惯养成计划第一期</a> <a href="/tags/java/" style="font-size: 15px;">java</a></div></div><div class="widget"><div class="widget-title">最新文章</div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2016/10/06/Java-Equals-HashCode/">Java hashCode & equals</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/10/04/README/">README</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/29/Java类和对象的初始化/">Java类和对象的初始化</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/21/Java成员变量和局部变量/">Java成员变量和局部变量</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/13/web-exception-handle/">web_exception_handle</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/07/Spring-bean-load/">Spring_bean_load</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/05/zsh-feature/">zsh_feature</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java-Volatile/">Java_Volatile</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/09/04/Java基本数据类型/">Java基本数据类型</a></li><li class="post-list-item"><a class="post-list-link" href="/2016/08/31/Java集合线程安全/">Java集合线程安全</a></li></ul></div><div class="widget"><div class="widget-title">友情链接</div><ul></ul><a href="http://weibo.com/2316099870" title="微博" target="_blank">微博</a><ul></ul><a href="https://www.zhihu.com/people/chen-wen-bo-21" title="知乎" target="_blank">知乎</a><ul></ul><a href="https://github.com/chenwenbo" title="github" target="_blank">github</a></div></div></div></div><div id="footer">© <a href="/." rel="nofollow">尔东陈.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div><a id="rocket" href="#top" class="show"></a><script src="/js/jquery.min.js" type="text/javascript"></script>
+<script src="/js/totop.js" type="text/javascript"></script><script src="/js/fancybox.pack.js" type="text/javascript"></script>
+<script src="/js/jquery.fancybox.js" type="text/javascript"></script><link rel="stylesheet" href="/css/jquery.fancybox.css" type="text/css"></div></body></html>

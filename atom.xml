@@ -1,0 +1,815 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title><![CDATA[尔东陈]]></title>
+  <subtitle><![CDATA[但行好事，莫问前程。]]></subtitle>
+  <link href="/atom.xml" rel="self"/>
+  <link href="http://yoursite.com/"/>
+  <updated>2016-10-06T10:42:16.000Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name><![CDATA[Chen]]></name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Java hashCode & equals]]></title>
+    <link href="http://yoursite.com/2016/10/06/Java-Equals-HashCode/"/>
+    <id>http://yoursite.com/2016/10/06/Java-Equals-HashCode/</id>
+    <published>2016-10-06T07:59:59.000Z</published>
+    <updated>2016-10-06T10:42:16.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="equals__u7684_u4F5C_u7528"><a href="#equals__u7684_u4F5C_u7528" class="headerlink" title="equals 的作用"></a>equals 的作用</h3><p>判断两个对象是否相等</p>
+<p><strong>JDK Object equals 默认实现</strong><br><figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (<span class="keyword">this</span> == obj);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>可以通过复写equals方法来改变判断条件</p>
+<p><strong>Java 对equals的要求</strong></p>
+<ul>
+<li>对称性 if x.equals(y) == true then y.equals(x) == true</li>
+<li>反射性 x.equals(x) == true</li>
+<li>类推性 x.equals(y) == true and x.equals(z) == true then y.equals(z) == true </li>
+<li>一致性 x.equals(y) == true 如果x和y的值不变，无论执行多少次，x.equals(y) == true</li>
+<li>非空性 x.equals(null) == false</li>
+</ul>
+<h3 id="equals_vs__3D_3D"><a href="#equals_vs__3D_3D" class="headerlink" title="equals vs =="></a>equals vs ==</h3><ul>
+<li>equals 比较两个对象是否相等，如果复写了equals方法则按照复写的方法进行比较，如果没有复写，则按照内存地址进行比较(同==)</li>
+<li>== 比较两个对象是否相等，比较的是内存地址</li>
+</ul>
+<h3 id="hashCode"><a href="#hashCode" class="headerlink" title="hashCode"></a>hashCode</h3><p>hashCode的作用是获取哈希码，也称之为散列码；它实质上是返回一个int整数。这个哈希吗的作用是确定该对象在哈希表的索引位置。</p>
+<p>hashCode只有散列表中才有作用，其他情况下没有作用，一般我们创建一个类、或者对象数组的时候，hashCode是没有作用的.</p>
+<p>Java集合中本质是散列表的类，如HashMap，Hashtable，HashSet。</p>
+<p><strong>散列码的作用</strong><br>散列表存储的是键值对（key-value),它的特点是：能根据“键”快速的检索出对应的“值”。这其中就利用到了散列码！<br>散列表的本质就是通过数组实现的，当我们要获取散列表中的某个“值”的时候，实际上是要获取数组中某个位置的元素。而数组的位置，是通过“键”对应的散列码计算得到的。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="equals__u7684_u4F5C_u7528"><a href="#equals__u7684_u4F5C_u7528" class="headerlink" title="equals 的作用"></a>equals 的作用</h3><p>判断两个对象是否]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/10/04/README/"/>
+    <id>http://yoursite.com/2016/10/04/README/</id>
+    <published>2016-10-04T09:53:03.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h1 id="hexo_blog_back_up"><a href="#hexo_blog_back_up" class="headerlink" title="hexo_blog_back_up"></a>hexo_blog_back_up</h1>]]></content>
+    <summary type="html">
+    <![CDATA[<h1 id="hexo_blog_back_up"><a href="#hexo_blog_back_up" class="headerlink" title="hexo_blog_back_up"></a>hexo_blog_back_up</h1>]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java类和对象的初始化]]></title>
+    <link href="http://yoursite.com/2016/09/29/Java%E7%B1%BB%E5%92%8C%E5%AF%B9%E8%B1%A1%E7%9A%84%E5%88%9D%E5%A7%8B%E5%8C%96/"/>
+    <id>http://yoursite.com/2016/09/29/Java类和对象的初始化/</id>
+    <published>2016-09-29T03:15:10.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<blockquote>
+<p>每个Java程序执行之前都必须要经历类的加载、连接、初始化过程</p>
+</blockquote>
+<p><strong>类的加载</strong></p>
+<p>加载是将编译后的Java类文件（.class文件）中的二进制数据读入内存，并将其放在运行时数据区的方法区内，然后在堆区创建一个java.lang.class对象，用来封装在方法区的数据结构。即加载后最终得到的是Class对象。（该对象是单例，JVM保证线程安全性）</p>
+<p>类的加载途径：Class.forName(“class full path”) 、实例对象.class（属性）、实例对象getclass()</p>
+<p><strong>类的连接</strong></p>
+<pre><code>-验证：确保被加载类的正确性
+-准备：为类的静态变量分配内存，并将其初始化为默认值
+-解析：把类中符号引用转换为直接引用
+</code></pre><p><strong>类的初始化</strong></p>
+<p>为类的静态变量赋予正确的初始值</p>
+<h3 id="u5BF9_u8C61_u7684_u521D_u59CB_u5316"><a href="#u5BF9_u8C61_u7684_u521D_u59CB_u5316" class="headerlink" title="对象的初始化"></a>对象的初始化</h3><p>在Java中，一个对象在可以被使用之前必须要被正确地初始化，这一点是Java规范规定的。</p>
+<p><strong>对象创建的方法</strong></p>
+<ul>
+<li>new 显式创建</li>
+<li>Class.forName(path).newInstance()</li>
+<li>String字面量类的隐式创建</li>
+</ul>
+<h3 id="u7C7B_u521D_u59CB_u5316_u7684_u5148_u51B3_u6761_u4EF6"><a href="#u7C7B_u521D_u59CB_u5316_u7684_u5148_u51B3_u6761_u4EF6" class="headerlink" title="类初始化的先决条件"></a>类初始化的先决条件</h3><p><strong>主动使用</strong></p>
+<ul>
+<li>创建某个类的新实例 （new/reflect/clone/serialization）</li>
+<li>调用类的静态方法</li>
+<li>访问类的静态变量，或者对该变量进行赋值</li>
+<li>反射 如：Class.forName(“com.java.Shape”)</li>
+<li>初始化某个子类</li>
+<li>虚拟机中启动某个含有main方法的启动类。</li>
+</ul>
+<p><strong>被动使用</strong><br>ClassLoader的loadClass方法会加载一个类，但是不会初始化该类</p>
+<h3 id="u5BF9_u8C61_u5B9E_u4F8B_u5316_u7684_u4E24_u79CD_u65B9_u5F0F"><a href="#u5BF9_u8C61_u5B9E_u4F8B_u5316_u7684_u4E24_u79CD_u65B9_u5F0F" class="headerlink" title="对象实例化的两种方式"></a>对象实例化的两种方式</h3><ul>
+<li>new </li>
+<li>Class.forName(class full path).newInstance()</li>
+</ul>
+<p><strong>区别</strong><br>new : 强引用、高效、能调用有参构造器<br>newInstance ：弱引用、低耦合、仅能调用构造器</p>
+<p>使用newInstance之前必须对类进行<strong>装载</strong>和<strong>连接</strong>的操作。<br>Class.forName 和 ClassLoad.loadClass的作用就是对类进行装载和连接。</p>
+<p>forName 和 loadClass方法的区别<br>ClassLoader的loadClass方法会加载一个类，但是不会初始化该类<br>而forName方法则会初始化该类。</p>
+<h3 id="JDBC_u9A71_u52A8_u7C7B_u7684_u52A0_u8F7D"><a href="#JDBC_u9A71_u52A8_u7C7B_u7684_u52A0_u8F7D" class="headerlink" title="JDBC驱动类的加载"></a>JDBC驱动类的加载</h3><p>我们在加载JDBC驱动类的时候会用到这样一段代码<br><figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">Class</span><span class="class">.forName</span>("<span class="tag">com</span><span class="class">.microsoft</span><span class="class">.sqlserver</span><span class="class">.jdbc</span><span class="class">.SQLServerDriver</span>");</span><br></pre></td></tr></table></figure></p>
+<p>这段代码的作用就是加载、连接、初始化Driver类。</p>
+<p>为什么不用ClassLoad.loadClass方法？</p>
+<p>因为loadClass方法并不会初始化该类，只会对其进行装载和连接，而JDBC的规范是需要初始化DriverManager.而此过程就在Driver类的静态代码块中，只有类的初始化才做才会加载静态代码块。所以此处只能用Class.forName进行处理。</p>
+<blockquote>
+<p><a href="http://blog.jobbole.com/23939/" target="_blank" rel="external">Java对象初始化详解</a><br><a href="http://liujiacai.net/blog/2014/07/12/order-of-initialization-in-java/" target="_blank" rel="external">Java类的初始化顺序</a></p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<blockquote>
+<p>每个Java程序执行之前都必须要经历类的加载、连接、初始化过程</p>
+</blockquote>
+<p><strong>类的加载</strong></p>
+<p>加载是将编译后的Java类文件（.class文件）中的二进制数据读入内存，并将其放在]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java成员变量和局部变量]]></title>
+    <link href="http://yoursite.com/2016/09/21/Java%E6%88%90%E5%91%98%E5%8F%98%E9%87%8F%E5%92%8C%E5%B1%80%E9%83%A8%E5%8F%98%E9%87%8F/"/>
+    <id>http://yoursite.com/2016/09/21/Java成员变量和局部变量/</id>
+    <published>2016-09-21T05:44:54.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u6210_u5458_u53D8_u91CF"><a href="#u6210_u5458_u53D8_u91CF" class="headerlink" title="成员变量"></a>成员变量</h3><p>Java成员变量默认会设定初始值。<br><strong>基本数据类型</strong></p>
+<ul>
+<li>byte    0</li>
+<li>short   0</li>
+<li>int 0</li>
+<li>long    0L</li>
+<li>float   0.0f</li>
+<li>double  0.0d</li>
+<li>char    ‘\u0000’</li>
+<li>boolean false</li>
+</ul>
+<p>引用类型为null</p>
+<h3 id="u5C40_u90E8_u53D8_u91CF"><a href="#u5C40_u90E8_u53D8_u91CF" class="headerlink" title="局部变量"></a>局部变量</h3><p>Java局部变量声明时必须赋初值，否则编译器会报错。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u6210_u5458_u53D8_u91CF"><a href="#u6210_u5458_u53D8_u91CF" class="headerlink" title="成员变量"></a>成员变量</h3><p>Java成员变量默认会设定初始值。<br><st]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[web_exception_handle]]></title>
+    <link href="http://yoursite.com/2016/09/13/web-exception-handle/"/>
+    <id>http://yoursite.com/2016/09/13/web-exception-handle/</id>
+    <published>2016-09-13T07:16:19.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>在Web应用中针对于异常情况的处理我们通常是会定义一个错误页面，然后发生错误的时候就会跳转到具体的错误页面。</p>
+<h3 id="err_code_u914D_u7F6E"><a href="#err_code_u914D_u7F6E" class="headerlink" title="err code配置"></a>err code配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">error-code</span>&gt;</span>404<span class="tag">&lt;/<span class="title">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">error-code</span>&gt;</span>500<span class="tag">&lt;/<span class="title">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">error-code</span>&gt;</span>414<span class="tag">&lt;/<span class="title">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">error-code</span>&gt;</span>505<span class="tag">&lt;/<span class="title">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">error-code</span>&gt;</span>400<span class="tag">&lt;/<span class="title">error-code</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>通过此种方式可以捕获到resoonse的错误返回码，然后可以跳转到错误页面。</p>
+<h3 id="u5F02_u5E38_u7C7B_u578B_u914D_u7F6E"><a href="#u5F02_u5E38_u7C7B_u578B_u914D_u7F6E" class="headerlink" title="异常类型配置"></a>异常类型配置</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="title">error-page</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">exception-type</span>&gt;</span>java.lang.NullPointerException<span class="tag">&lt;/<span class="title">exception-type</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="title">location</span>&gt;</span>/WEB-INF/jsp/errors/error.jsp<span class="tag">&lt;/<span class="title">location</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">error-page</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>此种方式我们可以捕获具体的异常，并跳转到错误页面。如果我们程序中代码写得不太好，可能会抛出各种runtimeException.<br>这时候仅仅配置error page就cover不到这种情况，需要上面的代码进行处理。</p>
+<h3 id="SpringMVC_u5F02_u5E38_u5904_u7406"><a href="#SpringMVC_u5F02_u5E38_u5904_u7406" class="headerlink" title="SpringMVC异常处理"></a>SpringMVC异常处理</h3><p><strong>HandlerExceptionResolver接口</strong></p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line">    <span class="function">ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request, HttpServletResponse response, Object <span class="keyword">handler</span>, Exception ex)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过HandlerExceptionResolver接口可以实现对controller中的异常进行捕获，并给出相应的处理逻辑。</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">MyExceptionResolver</span> <span class="keyword">implements</span> <span class="title">HandlerExceptionResolver</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ExceptionLogDao exceptionLogDao;</span><br><span class="line"></span><br><span class="line">    <span class="annotation">@Override</span></span><br><span class="line">    <span class="keyword">public</span> <span class="function">ModelAndView <span class="title">resolveException</span><span class="params">(HttpServletRequest request,</span><br><span class="line">            HttpServletResponse response, Object <span class="keyword">handler</span>, Exception ex)</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 异常处理，例如将异常信息存储到数据库</span></span><br><span class="line">        exceptionLogDao.save(ex);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// 视图显示专门的错误页</span></span><br><span class="line">        ModelAndView modelAndView = <span class="keyword">new</span> ModelAndView(<span class="string">"errorPage"</span>);</span><br><span class="line">        <span class="keyword">return</span> modelAndView;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SpringMVC__u548C_error_page"><a href="#SpringMVC__u548C_error_page" class="headerlink" title="SpringMVC 和 error page"></a>SpringMVC 和 error page</h3><p>默认会优先调用HandlerExceptionResolver的实现类进行处理异常，如果HandlerExceptionResolver中resolveException的返回值为null,就会默认调用error page中定义的处理方式进行处理。</p>
+<h3 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h3><p>对于web项目的异常处理，我们的处理方式通常可以采用 spring异常配置 +　error page 配合进行处理，保证能够cover所有的异常情况的处理。</p>
+<blockquote>
+<p><a href="http://cgs1999.iteye.com/blog/1547197" target="_blank" rel="external">参考资料</a> </p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>在Web应用中针对于异常情况的处理我们通常是会定义一个错误页面，然后发生错误的时候就会跳转到具体的错误页面。</p>
+<h3 id="err_code_u914D_u7F6E"><a href="#err_code_u914D_u7F6E" class="headerlin]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Spring_bean_load]]></title>
+    <link href="http://yoursite.com/2016/09/07/Spring-bean-load/"/>
+    <id>http://yoursite.com/2016/09/07/Spring-bean-load/</id>
+    <published>2016-09-07T06:47:20.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>Spring中定义的bean什么时候被加载？</p>
+<p>可能初始化的时候进行加载，也有可能第一次访问的时候进行加载，依赖于对bean的配置，受lazy-init scope属性控制。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Spring中定义的bean什么时候被加载？</p>
+<p>可能初始化的时候进行加载，也有可能第一次访问的时候进行加载，依赖于对bean的配置，受lazy-init scope属性控制。</p>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[zsh_feature]]></title>
+    <link href="http://yoursite.com/2016/09/05/zsh-feature/"/>
+    <id>http://yoursite.com/2016/09/05/zsh-feature/</id>
+    <published>2016-09-05T03:15:22.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>原文链接：<a href="http://code.joejag.com/2014/why-zsh.html" target="_blank" rel="external">http://code.joejag.com/2014/why-zsh.html</a></p>
+<p>zsh是我目前工作中用到最多的一个shell,通过oh-my-zsh的配置包可以让我们的命令行变得异常强大，现在介绍一下zsh的特性。</p>
+<h3 id="TAB_u547D_u4EE4"><a href="#TAB_u547D_u4EE4" class="headerlink" title="TAB命令"></a>TAB命令</h3><ul>
+<li>补全命令，可将可能出现的命令选项列在下方</li>
+<li>可支持目录补全 g/r/p+tab -&gt; github/resource/post</li>
+<li>更好用的历史记录  命令+上下左右 -&gt; 可以将该命令的历史记录列出来。</li>
+<li>在命令中使用通配符，可以讲该规则的文件全部列出 cp *.txt +tab -&gt; cp aa.txt bb.txt</li>
+<li>cd -+tab ：选择历史目录</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>原文链接：<a href="http://code.joejag.com/2014/why-zsh.html" target="_blank" rel="external">http://code.joejag.com/2014/why-zsh.html</a></p>
+<]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java_Volatile]]></title>
+    <link href="http://yoursite.com/2016/09/04/Java-Volatile/"/>
+    <id>http://yoursite.com/2016/09/04/Java-Volatile/</id>
+    <published>2016-09-04T09:38:43.000Z</published>
+    <updated>2016-09-04T09:41:51.000Z</updated>
+    <content type="html"><![CDATA[<p>Volatile 修饰的成员变量在每次被线程访问时，都强制从共享内存中重新读取该成员变量的值。而且，当成员变量发生变化时，会强制线程将变化值回写到共享内存。这样在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>Volatile 修饰的成员变量在每次被线程访问时，都强制从共享内存中重新读取该成员变量的值。而且，当成员变量发生变化时，会强制线程将变化值回写到共享内存。这样在任何时刻，两个不同的线程总是看到某个成员变量的同一个值。</p>
+]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java基本数据类型]]></title>
+    <link href="http://yoursite.com/2016/09/04/Java%E5%9F%BA%E6%9C%AC%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/"/>
+    <id>http://yoursite.com/2016/09/04/Java基本数据类型/</id>
+    <published>2016-09-04T08:56:00.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="Java_u7684_u4E24_u5927_u6570_u636E_u7C7B_u578B"><a href="#Java_u7684_u4E24_u5927_u6570_u636E_u7C7B_u578B" class="headerlink" title="Java的两大数据类型"></a>Java的两大数据类型</h2><ul>
+<li>内置数据类型</li>
+<li>引用数据类型</li>
+</ul>
+<h3 id="u5185_u7F6E_u6570_u636E_u7C7B_u578B"><a href="#u5185_u7F6E_u6570_u636E_u7C7B_u578B" class="headerlink" title="内置数据类型"></a>内置数据类型</h3><p>Java提供了八种基本数据类型，六种数字类型（四个整型，两个浮点），一种是字符类型，一种布尔类型。<br><strong>byte</strong>:</p>
+<ul>
+<li>byte数据类型是8位、有符号的，以二进制补码表示整数；</li>
+<li>最小值是-128（-2^7)</li>
+<li>最大值是127（2^7-1)</li>
+<li>默认值0</li>
+<li>byte类型用在大型数组中节约空间，主要代替整数，因为byte变量占用空间只有int类型的四分之一；</li>
+</ul>
+<p><strong>short</strong>:</p>
+<ul>
+<li>short数据类型是16位、有符号位的以二进制补码表示的整数</li>
+<li>最小值是-32768（-2^15）；</li>
+<li>最大值是32767（2^15 - 1）；</li>
+<li>默认值为0</li>
+<li>Short数据类型也可以像byte那样节省空间。一个short变量是int型变量所占空间的二分之一；</li>
+</ul>
+<p><strong>int</strong>:</p>
+<ul>
+<li>int数据类型是32位、有符号的以二进制补码表示的整数；</li>
+<li>最小值是-2,147,483,648（-2^31）；</li>
+<li>最大值是2,147,483,647（2^31 - 1）；</li>
+<li>一般地整型变量默认为int类型；</li>
+<li>默认值是0；</li>
+</ul>
+<p><strong>long</strong>：</p>
+<ul>
+<li>long数据类型是64位、有符号的以二进制补码表示的整数；</li>
+<li>最小值是-9,223,372,036,854,775,808（-2^63）；</li>
+<li>最大值是9,223,372,036,854,775,807（2^63 -1）；</li>
+<li>这种类型主要使用在需要比较大整数的系统上；</li>
+<li>默认值是0L；</li>
+</ul>
+<p><strong>float</strong>：</p>
+<ul>
+<li>float数据类型是单精度、32位、符合IEEE 754标准的浮点数；</li>
+<li>float在储存大型浮点数组的时候可节省内存空间；</li>
+<li>默认值是0.0f；</li>
+<li>浮点数不能用来表示精确的值，如货币；</li>
+</ul>
+<p><strong>double</strong>：</p>
+<ul>
+<li>double数据类型是双精度、64位、符合IEEE 754标准的浮点数；</li>
+<li>浮点数的默认类型为double类型；</li>
+<li>double类型同样不能表示精确的值，如货币；</li>
+<li>默认值是0.0d；</li>
+</ul>
+<p><strong>boolean</strong>：</p>
+<ul>
+<li>boolean数据类型表示一位的信息；</li>
+<li>只有两个取值：true和false；</li>
+<li>这种类型只作为一种标志来记录true/false情况；</li>
+<li>默认值是false；</li>
+</ul>
+<p><strong>char</strong>：</p>
+<ul>
+<li>char类型是一个单一的16位Unicode字符；</li>
+<li>最小值是’\u0000’（即为0）；</li>
+<li>最大值是’\uffff’（即为65,535）；</li>
+<li>char数据类型可以储存任何字符；</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="Java_u7684_u4E24_u5927_u6570_u636E_u7C7B_u578B"><a href="#Java_u7684_u4E24_u5927_u6570_u636E_u7C7B_u578B" class="headerlink" title="]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Java集合线程安全]]></title>
+    <link href="http://yoursite.com/2016/08/31/Java%E9%9B%86%E5%90%88%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8/"/>
+    <id>http://yoursite.com/2016/08/31/Java集合线程安全/</id>
+    <published>2016-08-31T08:09:42.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>—转载自极客学院—</p>
+<p>多线程环境下安全使用集合 API</p>
+<p>在集合 API 中，最初设计的 Vector 和 Hashtable 是多线程安全的。例如：对于 Vector 来说，用来添加和删除元素的方法是同步的。如果只有一个线程与 Vector 的实例交互，那么，要求获取和释放对象锁便是一种浪费，另外在不必要的时候如果滥用同步化，也有可能会带来死锁。因此，对于更改集合内容的方法，没有一个是同步化的。集合本质上是非多线程安全的，当多个线程与集合交互时，为了使它多线程安全，必须采取额外的措施。</p>
+<p>在 Collections 类中有多个静态方法，它们可以获取通过同步方法封装非同步集合而得到的集合：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public static Collection <span class="function"><span class="title">synchronizedCollention</span><span class="params">(Collection c)</span></span></span><br><span class="line"></span><br><span class="line">public static List <span class="function"><span class="title">synchronizedList</span><span class="params">(list l)</span></span></span><br><span class="line"></span><br><span class="line">public static Map <span class="function"><span class="title">synchronizedMap</span><span class="params">(Map m)</span></span></span><br><span class="line"></span><br><span class="line">public static Set <span class="function"><span class="title">synchronizedSet</span><span class="params">(Set s)</span></span></span><br><span class="line"></span><br><span class="line">public static SortedMap <span class="function"><span class="title">synchronizedSortedMap</span><span class="params">(SortedMap sm)</span></span></span><br><span class="line"></span><br><span class="line">public static SortedSet <span class="function"><span class="title">synchronizedSortedSet</span><span class="params">(SortedSet ss)</span></span></span><br></pre></td></tr></table></figure></p>
+<p>这些方法基本上返回具有同步集合方法版本的新类。比如，为了创建多线程安全且由 ArrayList 支持的 List，可以使用如下代码：</p>
+<p>List list = Collection.synchronizedList(new ArrayList());<br>注意，ArrayList 实例马上封装起来，不存在对未同步化 ArrayList 的直接引用（即直接封装匿名实例）。这是一种最安全的途径。如果另一个线程要直接引用 ArrayList 实例，它可以执行非同步修改。</p>
+<p>下面给出一段多线程中安全遍历集合元素的示例。我们使用 Iterator 逐个扫描 List 中的元素，在多线程环境中，当遍历当前集合中的元素时，一般希望阻止其他线程添加或删除元素。安全遍历的实现方法如下：</p>
+<figure class="highlight processing"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;  </span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> class SafeCollectionIteration extends <span class="keyword">Object</span> &#123;  </span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> main(<span class="keyword">String</span>[] args) &#123;  </span><br><span class="line">                <span class="comment">//为了安全起见，仅使用同步列表的一个引用，这样可以确保控制了所有访问  </span></span><br><span class="line">                <span class="comment">//集合必须同步化，这里是一个List  </span></span><br><span class="line">                List wordList = Collections.synchronizedList(<span class="keyword">new</span> ArrayList());  </span><br><span class="line"></span><br><span class="line">                <span class="comment">//wordList中的add方法是同步方法，会获取wordList实例的对象锁  </span></span><br><span class="line">                wordList.<span class="built_in">add</span>(<span class="string">"Iterators"</span>);  </span><br><span class="line">                wordList.<span class="built_in">add</span>(<span class="string">"require"</span>);  </span><br><span class="line">                wordList.<span class="built_in">add</span>(<span class="string">"special"</span>);  </span><br><span class="line">                wordList.<span class="built_in">add</span>(<span class="string">"handling"</span>);  </span><br><span class="line"></span><br><span class="line">                <span class="comment">//获取wordList实例的对象锁，  </span></span><br><span class="line">                <span class="comment">//迭代时，阻塞其他线程调用add或remove等方法修改元素  </span></span><br><span class="line">                <span class="keyword">synchronized</span> ( wordList ) &#123;  </span><br><span class="line">                        Iterator iter = wordList.iterator();  </span><br><span class="line">                        <span class="keyword">while</span> ( iter.hasNext() ) &#123;  </span><br><span class="line">                                <span class="keyword">String</span> s = (<span class="keyword">String</span>) iter.next();  </span><br><span class="line">                                System.out.<span class="built_in">println</span>(<span class="string">"found string: "</span> + s + <span class="string">", length="</span> + s.length());  </span><br><span class="line">                        &#125;  </span><br><span class="line">                &#125;  </span><br><span class="line">        &#125;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里需要注意的是：在 Java 语言中，大部分的线程安全类都是相对线程安全的，它能保证对这个对象单独的操作时线程安全的，我们在调用的时候不需要额外的保障措施，但是对于一些特定的连续调用，就可能需要在调用端使用额外的同步手段来保证调用的正确性。例如 Vector、HashTable、Collections的synchronizedXxxx()方法包装的集合等。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>—转载自极客学院—</p>
+<p>多线程环境下安全使用集合 API</p>
+<p>在集合 API 中，最初设计的 Vector 和 Hashtable 是多线程安全的。例如：对于 Vector 来说，用来添加和删除元素的方法是同步的。如果只有一个线程与 Vector 的实例]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[数据结构读书笔记01]]></title>
+    <link href="http://yoursite.com/2016/08/31/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B001/"/>
+    <id>http://yoursite.com/2016/08/31/数据结构读书笔记01/</id>
+    <published>2016-08-31T07:23:13.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u7EBF_u6027_u8868"><a href="#u7EBF_u6027_u8868" class="headerlink" title="线性表"></a>线性表</h3><p>线性表是一种简单的数据结构，数据元素之间存在着一对一的关系。其存储方法通常采用顺序存储和链式存储</p>
+<p>线性表的顺序存储可以采用结构体的形式，它含有两个域。一个整型的长度域，用以存放表中的元素的个数；另一个数组域，其类型可以根据需要而定。顺序存储的优点是可以随机存取，且存储空间比较节约，而缺点就是表的扩充比较困难，插入和删除操作者都需要大量的元素移动。 </p>
+<p>线性表的链式存储是通过节点之间的连接得到的。根据连接方式的不同可以分为：单向链表、双向链表和循环链表等。</p>
+<p>单向链表由一个数据域和一个指针域组成，数据域用来存放结点的信息；指针域用来指出下一个结点的地址。在单向链表中，只能从某个结点出发找它的后继结点。单向链表的最大优点是表的扩充容易、插入和删除操作方便，而缺点就是存储空间比较浪费。</p>
+<p>双向链表是由一个数据域和两个指针域组成的，他的优点是既能查找结点的前驱，也能找到结点的后继。</p>
+<p>循环列表使最后一个结点的指针指向头借点的地址，形成一个首尾相连的环。利用循环链表将使某些运算比单向链表简单。</p>
+<h3 id="u6808"><a href="#u6808" class="headerlink" title="栈"></a>栈</h3><p>栈是一种运算限制的线性表，它只允许在栈顶进行插入和删除操作</p>
+<p>栈的逻辑结构和线性表相同，数据元素之间存在一对一关系，其主要特点是“先进后出”</p>
+<p>栈的存储结构有顺序栈和链表之分</p>
+<p>主要应用有子程序调用，递归调用</p>
+<h3 id="u961F_u5217"><a href="#u961F_u5217" class="headerlink" title="队列"></a>队列</h3><p>队列是一种操作受限制的线性表，一般队列只允许在队尾进行插入操作，在队头进行删除操作。</p>
+<p>队列的逻辑结构和线性表也相同，数据元素之间存在一对一的关系，其主要特点是“先进先出”</p>
+<h3 id="Java_Collection_Mapping"><a href="#Java_Collection_Mapping" class="headerlink" title="Java Collection Mapping"></a>Java Collection Mapping</h3><p>顺序线性表 – ArrayList<br>链式线性表 – LinkedList<br>栈 – Stack / LinkedList<br>队列 – Queue / LinkedList</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u7EBF_u6027_u8868"><a href="#u7EBF_u6027_u8868" class="headerlink" title="线性表"></a>线性表</h3><p>线性表是一种简单的数据结构，数据元素之间存在着一对一的关系。其存储方法通常采]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Thinking In Java 学习笔记——持有对象]]></title>
+    <link href="http://yoursite.com/2016/08/31/Think-In-Java-note-1/"/>
+    <id>http://yoursite.com/2016/08/31/Think-In-Java-note-1/</id>
+    <published>2016-08-31T03:06:34.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>通常我们只有在程序运行时才会知道我们需要创建多少个对象，在此之前我们并不知道其对象的数量和类型，为了解决这个问题我们引入了容器的概念。</p>
+<h2 id="u5BB9_u5668"><a href="#u5BB9_u5668" class="headerlink" title="容器"></a>容器</h2><h3 id="u6570_u7EC4"><a href="#u6570_u7EC4" class="headerlink" title="数组"></a>数组</h3><p>在Java中我们可以通过数组来保存对象的一组引用，但是数组初始化的时候需要指定容量的大小，但是更多的情况下我们并不知道我们会产生多少个对象，所以使用数组并不能解决我们大多数的问题。 </p>
+<h3 id="u96C6_u5408"><a href="#u96C6_u5408" class="headerlink" title="集合"></a>集合</h3><p>Java的类库中提供了一套相对完整的容器类完成这件事情，其中的基本类型包括List Set Queue Map.这些对象类型被称之为集合类，但是Java类库中使用了Collection这个名字来代替一个特殊子集，所以我们通常用“容器”来称呼他们。</p>
+<p>容器类还有一些其他的特性，Set每个值只能保存一个对象，Map允许你将对象和对象关联起来形成关联数组,ArrayList可以自动扩容。</p>
+<h2 id="u6CDB_u578B_u548C_u7C7B_u578B_u5B89_u5168_u7684_u5BB9_u5668"><a href="#u6CDB_u578B_u548C_u7C7B_u578B_u5B89_u5168_u7684_u5BB9_u5668" class="headerlink" title="泛型和类型安全的容器"></a>泛型和类型安全的容器</h2><p>Jave SE5之前我们还没有引入泛型的概念，所以会导致类型安全的问题。使用泛型的最大好处就是在编译期间可以进行类型检查，避免了很多的类型转换错误。</p>
+<h3 id="u57FA_u672C_u6982_u5FF5"><a href="#u57FA_u672C_u6982_u5FF5" class="headerlink" title="基本概念"></a>基本概念</h3><p>Java容器类的用途是“保存对象”，可以划分为两个不同的概念。</p>
+<ol>
+<li><p>Collection. 一个独立元素的序列，这些元素遵循一条或者多条的规则，List必须按照插入顺序进行保存，Set不能有重复的元素，Queue按照队列的规则来确定对象产生的顺序（先进先出）.</p>
+</li>
+<li><p>Map. 一组成对的“键值对”对象，允许你用键来进行查询值。ArrayList允许你用数字下标来进行查找。映射表允许我们使用一个对象来查询另一个对象，它们被称为“关联数组”，因为它们将两个对象关联在一起，所以通常可以称呼其“字典”。</p>
+</li>
+</ol>
+<p>我们通常建议在定义容器类的时候使用接口：List Set Map等，但是在实现的时候制定其实现类。（针对接口编程）<br>特殊情况：如果我们要使用仅在其实现类中的方法的时候，我们就必须声明的时候就指定其实现类。LinkedList TreeMap中都有其独特的方法。</p>
+<h3 id="List"><a href="#List" class="headerlink" title="List"></a>List</h3><p>List承诺可以将元素维护在特定的序列中，List接口在Collection的基础上添加了大量的方法，使得可以在List的中间插入和移除元素。</p>
+<p>有两种类型的List:</p>
+<ul>
+<li>ArrayList 长于随机访问元素，但是插入和移除非常慢。因为底层的实现是顺序排列的，插入和移除之后所有所有的元素都要跟着变动</li>
+<li>LinkedList 它通过代价较低的在List中间插入和删除元素，提供了优化顺序的访问。LinkedList在随机访问方面比较慢，但是特性要比ArrayList更大。</li>
+</ul>
+<h3 id="u8FED_u4EE3_u5668"><a href="#u8FED_u4EE3_u5668" class="headerlink" title="迭代器"></a>迭代器</h3><p>不同的容器类取出元素的方法都会有所区别，在我们修改容器类的实现的时候，这个时候可能就会修改很多取容器中元素的代码，但是如果我们能有统一的标准去拿到容器类中的元素，我们就可以省去修改取元素部分的代码了。</p>
+<p>迭代器的概念可以达到此目的。迭代器是一个对象，他的工作是遍历并选择序列中的对象，而客户端程序员并不需要他的底层结构，此外迭代器通常被称为轻量级对象；创建它的代价小。但是经常可以看到迭代器上有一些奇怪的限制。例如，Java的Iterator只能单向移动，这个Iterator只能用来：</p>
+<ul>
+<li>使用Iterator()方法返回一个Iterator。Iterator准备返回序列的第一个元素</li>
+<li>使用next()或者序列的下一个元素</li>
+<li>使用hasNext()检查是否存在下一个元素</li>
+<li>使用remove将迭代器新近返回的元素删除</li>
+</ul>
+<h3 id="LinkedList"><a href="#LinkedList" class="headerlink" title="LinkedList"></a>LinkedList</h3><p>LinkedList像ArrayList一样实现了List接口，但是他执行的某些操作（插入和删除）与ArrayList相比更加高效，但在随机访问操作方面要逊色一些。<br>LinkedList还添加了可以使其用作栈、队列、或双向队列的方法。（实现了Queue接口）</p>
+<h3 id="Set"><a href="#Set" class="headerlink" title="Set"></a>Set</h3><p>Set不保存重复的元素，Set具有和Collection相同的接口，因此没有任何额外的功能，不想之前的ArrayList LinkedList，实际上Set就是Collection，只是行为不同。</p>
+<ul>
+<li>HashSet使用散列函数</li>
+<li>TreeSet讲元素存储在红-黑树数据结构中</li>
+<li>LinkedHashSet因为查询速度的原因也使用了散列，但是它使用了链表来维护插入的顺序</li>
+</ul>
+<h3 id="Map"><a href="#Map" class="headerlink" title="Map"></a>Map</h3><h3 id="Queue"><a href="#Queue" class="headerlink" title="Queue"></a>Queue</h3><h2 id="u603B_u7ED3"><a href="#u603B_u7ED3" class="headerlink" title="总结"></a>总结</h2><p>使用接口描述的一个理由是它可以使我们能够创建更通用的代码，通过针对接口编程我们的代码可以应用与更多的对象类型，在Java中讲COllection和Iterator()绑定到了一起，如果你实现了Collection意味着你必须提供itarator()方法。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>通常我们只有在程序运行时才会知道我们需要创建多少个对象，在此之前我们并不知道其对象的数量和类型，为了解决这个问题我们引入了容器的概念。</p>
+<h2 id="u5BB9_u5668"><a href="#u5BB9_u5668" class="headerlink" ti]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[mysql笔记（转载）]]></title>
+    <link href="http://yoursite.com/2016/08/30/mysql%E7%AC%94%E8%AE%B0%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/08/30/mysql笔记（转载）/</id>
+    <published>2016-08-30T07:42:58.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>–转载自码农翻身读书群 陌路流氓(353003874)–</p>
+<p>Mysql必知必会笔记(温习):</p>
+<p><strong>show命令的常用使用</strong></p>
+<p>–查看有哪些库</p>
+<ol>
+<li>show databases;</li>
+</ol>
+<p>–查看当前库中有哪些表</p>
+<ol>
+<li>show tables;</li>
+</ol>
+<p>–查看表中有哪些列</p>
+<ol>
+<li>show columns from  table_name; 或者   describe table_name;</li>
+</ol>
+<p>–查看服务器状态</p>
+<ol>
+<li>show status;</li>
+</ol>
+<p>–查看建表语句或者创建数据库的语句</p>
+<ol>
+<li>show create table table_name 和 show create database database_name;</li>
+</ol>
+<p>–用来显示授权用户的安全权限</p>
+<ol>
+<li>show grants</li>
+</ol>
+<p>–用来显示服务器错误或者警告</p>
+<ol>
+<li>show errors 和 show warnings</li>
+</ol>
+<p>–limit语句</p>
+<ol>
+<li>select id from table_name limit 3,4;//表示从第三行(包括)开始取值，取四条数据(mysql的行是从0开始的)<br> Mysql5版本支持同样语义的写法: select id from table_name limit 4 offset 3;</li>
+</ol>
+<p>–sql语句中使用全限定名称</p>
+<ol>
+<li>select table_name.column_name from database_name.table_name;</li>
+</ol>
+<p>–order by 的说明</p>
+<ol>
+<li>order by 多个列的时候,只有当第一个列相同的时候,才会根据第二个列进行排序,以此类推,但是如果第一个列是唯一的话,<br>那么就不会根据其他列进行排序</li>
+</ol>
+<p>–mysql在执行匹配的时候默认不区分大小写</p>
+<ol>
+<li>比如select id,name from table_name where name = ‘Li’;//这样可能查询出name=’li’的结果</li>
+</ol>
+<p>–判断是否为空或者不为空</p>
+<ol>
+<li>select id from table_name where id is null; 或者 select id from table_name where id is not null;</li>
+</ol>
+<p>–and的优先级大于or优先级</p>
+<ol>
+<li>select id,name from table_name where age &lt; 10 or id = 13 and age &gt; 20;//表示查询age &lt; 10的任何数据和(id = 13并且age &gt; 20)的数据</li>
+</ol>
+<p>–in和or的比较</p>
+<ol>
+<li>in和or的作用一致,但是in比or更加清晰,而且一般来说in的效率比or高,而且in还可以包含子查询</li>
+</ol>
+<p>–使用通配符</p>
+<ol>
+<li><p>%表示任意字符出现任意次数,比如select id from table_name where name like ‘jack%’;表示查询所有名称为jack开头的数据<br>通配符可以在任意位置并且可以使用多个通配符,值得注意的是%代表搜索模式中给定位置的0个、1个或者多个字符。</p>
+</li>
+<li><p>_通配符只匹配一个字符</p>
+</li>
+<li>不要过度使用通配符,因为它的效率不高,不要讲通配符放在匹配模式的开始处,因为这样搜索起来是最慢的,如果你在某个字段使用了索引,然后使用通配符进行查询,如果将通配符放到开始处,那么就不会使用索引。不要把通配符放错位置了</li>
+</ol>
+<p>–Mysql中的正则表达式</p>
+<ol>
+<li>使用regexp关键字,比如select id from table_name where name regexp ‘zhangsan’;</li>
+<li>使用点(.)来表示任意一个字符,比如select name from table_name where id regexp ‘.000’;//找出id为1000,2000,3000等的name</li>
+<li>如果数据库中存在id:10 name:pack10 这样一条数据,那么以下两条sql中第一条不会返回任何数据,而第二条会返回：<br>select id from table_name where name like ‘10’;<br>select id from table_name where name regexp ‘10’;<br>因为like匹配整个列,如果数据在列值中出现的话,那么like不会找到它，除非使用%进行模糊匹配。<br>但是regexp则可以在列值内进行匹配,如果找到则会返回,当然可以使用^10$这种方式进行匹配整个列值。</li>
+<li><p>匹配是不区分大小写的,除非手动加上binary关键字,比如name regexp binary ‘zhangsan’;</p>
+</li>
+<li><p>or匹配,比如 id regexp ‘100|200|300’;</p>
+</li>
+<li><p>匹配单一的字符,那么使用[]将内容括起来,比如我要查看a,b,1,2这几个字符,那么就是name regexp ‘[ab12]test’;</p>
+</li>
+<li><p>匹配非操作，使用^,比如[^123]将会匹配非1,2,3这些字符的数据</p>
+</li>
+<li><p>匹配范围,可以使用[0-9A-Za-z]等方式使用</p>
+</li>
+<li><p>匹配特殊字符,如果想要在正则表达式中匹配. | [ ]这些正则中特殊的字符,那么需要进行转义,在Mysql中使用\进行转义,比如regexp ‘\.’,如果需要匹配\那么就需要使用\\</p>
+</li>
+<li><p>\也用来引用元字符<br>\f    换页<br>\n    换行<br>\r    回车<br>\t    制表<br>\v    纵向制表</p>
+</li>
+<li><p>匹配字符类<br>[:alnum:]   任意字母和数字,(同[a-zA-Z0-9])<br>[:alpha:]   任意字母(同[a-aA-Z])<br>[:blank:]   空格和制表,(同[\t])<br>[:cntrl:]   ASCII控制字符(ASCII 0到31和127)<br>[:digit:]   任意数字(同[0-9])<br>[:graph:]   与[:print:]相同,但不包含空格<br>[:lower:]   任意小写字母,(同[a-z])<br>[:print:]   任意可打印字符<br>[:punct:]   既不在[:alpha:]又不在[:cntrl:]中的任意字符<br>[:space:]   包含空格在内的任意空格字符(同[\f\n\r\t\v])<br>[:upper:]   任意大写字母(同[A-Z])<br>[:xdigit:]  任意十六进制数字(同[a-fA-F0-9])</p>
+</li>
+<li><p>重复元字符</p>
+<ul>
+<li>0个或多个匹配</li>
+</ul>
+<ul>
+<li>1个或多个匹配(同{1,})<br>?       0个或1个匹配(同{0,1})<br>n       指定数目的匹配<br>{n,}    不少于指定数目的匹配<br>{n,m}   匹配数目的范围,m不超过255</li>
+</ul>
+<p>例子：<br>select name from table_name where name regext ‘\([1-9] stricks?\)’;<br>得到的答案为(1 stricks)和tiny (5 strick)</p>
+<p>匹配连在一起的任意四位数字: select id,name from table_name where id regext ‘[[:digit:]]{4}’;</p>
+</li>
+<li><p>为了匹配特定位置的文本,需要使用定位符<br>元字符         说明<br>^              文本的开始<br>$              文本的结尾<br>[[:&lt;:]]        词的开始<br>[[:&gt;:]]        词的结尾</p>
+<p>select ‘.3abc’ REGEXP ‘^[0-9\.]’返回结果为1,因为’.3abc’中包含了以数字开头的数据</p>
+</li>
+</ol>
+<p>–Mysql函数</p>
+<ol>
+<li>concat()拼接串,参数需要一个或者多个串,各个串之间用逗号间隔</li>
+<li>rtirm()删除右边空格,ltrim()删除左边空格,trim删除左右两边空格</li>
+<li>常用文本处理函数<br>Left()              返回串左边的字符<br>Length()            返回串的长度<br>Locate()            找出串的一个子串<br>Lower()             将串转换成为小写<br>LTrim()             去掉左边的空格<br>Right()             返回串右边的字符<br>RTrim()             去掉右边的空格<br>SubString()         返回子串的字符<br>Upper()             将串转换成大写</li>
+<li>常用日期和时间处理函数<br>AddDate()           增加一个日期(天、周等)<br>AddTime()           增加一个时间(时、分等)<br>CurDate()           返回当前日期<br>CurTime()           返回当前时间<br>Date()              返回日期时间的日期部分<br>DateDiff()          计算两个日期之差<br>Date_Add()          高度灵活的日期运算函数<br>Date_Format()       返回一个格式化的日期或者字符串<br>Day()               返回一个日期的天数部分<br>DayOfWeek()         对于一个日期,返回对应的星期几<br>Hour()              返回一个时间的小时部分<br>Minute()            返回一个时间的分钟部分<br>Month()             返回一个日期的月份部分<br>Now()               返回当前日期和时间<br>Second()            返回一个时间的秒部分<br>Time()              返回一个日期时间的时间部分<br>Year()              返回一个日期的年份部分</li>
+<li>聚集函数<br>count(*)对表中行的数目进行计数,不管表列中包含的是空值(NULL)还是非空值<br>count(column)对特定列中具有值的行进行计数,忽略NULL值<br>Max()一般用于找出最大的数值或者日期值,但是在用于文本数据时,如果数据按照相应的列进行排序,则Max()返回最后一行。<br>Max(),Min()均忽略列值为NULL的行</li>
+</ol>
+<p>#使用group by</p>
+<ol>
+<li><p>group by 可以包含任意列<br>如果在group by 子句中嵌套了分组,数据将在最后规定的分组上进行汇总<br>group by子句中列出的每个列都必须是检索列或者有效的表达式(但不能是聚集函数)<br>除掉聚集计算语句外,select语句中的每个列都必须在group by子句中给出<br>如果分组列中具有NULL值,则NULL将作为一个分组返回,如果列中有多行NULL值,它们将分为一组。<br>group by子句必须出现在where之后,order by 之前</p>
+</li>
+<li><p>使用having来进行对分组进行过滤,例如:select id,sum(score) from table_name group by id having sum(score) &gt; 120;</p>
+</li>
+</ol>
+<p>#having和where的区别</p>
+<ol>
+<li>where在数据分组前进行过滤,having在数据分组后进行过滤</li>
+</ol>
+<p>#使用子查询</p>
+<ol>
+<li>使用子查询的时候,必须保证select语句与where子句中存在相同数目的列</li>
+<li>ANSI SQL规范首选inner join语法</li>
+<li>自连接(将一个表当做两个表看)的使用:<br>select id,name from table_name where id = (select id from table_name where score &gt; 60);<br>select id,name from table_name as t1,table_name as t2 where t1.id == t2.pid;</li>
+<li><p>MySQL中的各种连接<br>左外连接也叫左连接（left outer join也可以简写为left join）<br>  显示左表的所有数据，然后根据条件与右表进行匹配，如果有匹配的就加在左表的后面，如果有多条匹配数据，则显示多条。<br>没有的话，该行的右表就以null值填充。</p>
+<p>右连接（right outerjoin 也可以简写为right join）<br>  显示右表的所有数据，然后根据条件与左表匹配，如果有匹配的就加在左表的后面，如果有多条匹配数据，则显示多条。<br>没有的话，该行以null值填充。（和左连接类似）</p>
+<p>何为左表、右表呢 ？在join的左边就称为左表，右边就称为右表</p>
+</li>
+</ol>
+<p>#union的使用</p>
+<ol>
+<li><p>组合查询,利用union可以将多条select语句将它们的结果组合成当个结果集,union规则：<br>union必须由两条或者两条以上的select语句组成,语句之间可以用union分割<br>union中的每个查询必须包含相同的列、表达式或聚集函数(不过各个列不需要以相同的次序输出)<br>列数据类型必须兼容：类型不必完全相同,当必须是DBMS可以隐含的转换的类型(例如:不同的数值类型或不同的日期类型)</p>
+</li>
+<li><p>union会将返回的结果集中重复的数据行自动取消(即只会返回一行),如果想匹配所有返回行,这需要使用union all</p>
+</li>
+<li>MyIsam引擎支持全文本搜索,InnoDB不支持</li>
+<li>启用全文本搜索支持,一般在创建表的时候启用全文搜索<br>create table tabl_name (<pre><code>id int not null auto_increment,
+name varchar(200) not null default &apos;&apos;,
+note_text text null,
+fulltext(note_text)
+</code></pre>)engine=myisam；</li>
+<li><p>在导入的时候不要使用fulltext,因为会维护一份索引导致导入过慢</p>
+</li>
+<li><p>Match()指定被搜索的列,Against()指定要使用的搜索表达式使用:select node_text from table_name where Match(node_text) against(‘rabbit’);</p>
+</li>
+<li>传递给Match()的值必须与FullText()定义的相同,如果指定多个列,则必须列出他们(而且次序正确)</li>
+<li>fullText不区分大小写,除非使用binary关键字</li>
+<li>使用Like也能达到相同的想过,但是使用FullText会对返回的结果集进行排序,出现的关键字在前面的可能会最先返回,即具有高优先级的最先返回(可能这正是你想要的行)</li>
+<li>select node_text，Match(node_text) against(‘rabbit’) as rank from table_name;将其放在select中如果文本中包括rabbit返回的rank值就大于0,否则就为0,这也证明了fullText是如何排除行,如何排序结果的</li>
+</ol>
+<p>#插入</p>
+<ol>
+<li>使用insert的时候最好指定列</li>
+<li>如果表的定义允许,则可以在insert操作中省略某些列,省略的列必须满足以下某个条件。<br>该列允许为NULL值(无值或空值)<br>在表定义中给出默认值，这表示如果不给出值，将使用默认值<br>55.MySql经常被多个客户访问,对处理什么请求以及用什么次序管理是Mysql的任务,insert操作可能很耗时(特别是有很多索引需要更新的时候),而且他可能降低等待处理的select语句的性能。如果数据检索是重要的(通常是这样),则可以通过在insert和into中间添加关键字LOW_PRIORITY,指示Mysql降低insert语句的的优先级。</li>
+<li>插入多条数据<br>insert into table_name(id,name) values(1,’zhangsan’),(‘2’,’lisi’);此举可以提高insert的性能<br>56.insert select语法:insert into table_name(id,name) select id,name from table_name2</li>
+</ol>
+<p>#更新和删除</p>
+<ol>
+<li>使用update的时候最好指定条件,也可以使用子查询</li>
+<li><p>如果用update语句更新多行,并且在更新的时候其中的一行或者多行出现错误,则整个update操作被取消(错误发生前更新的所有行为被恢复到它们原有的值),如果想即使发生了错误,也继续进行更新,可以使用ignore关键字,如下所示：update ignore table_name</p>
+</li>
+<li><p>delete删除的是表的行,而不包含表本身</p>
+</li>
+<li>如果想要快速删除表中的所有数据,可以使用truncate table语句,它完成相同的工作,但是它更快(truncate实际上是删除原来的表并重新新建一个表,而不是逐行删除表中的数据)</li>
+</ol>
+<p>#创建和操纵表</p>
+<ol>
+<li>如果你仅仅现在一个表不存在的时候创建它,那么可以使用create table table_name if not exists 语句</li>
+<li>mysql不允许使用函数作为列的默认值,它只支持常量</li>
+<li>常用引擎<br>InnoDB是一个可靠的事务处理引擎，它不支持全文搜索<br>MyIsam是一个性能极高的引擎,它支持全文搜索<br>Memory在功能上等同于MyIsam,但是由于数据存储在内存中,速度很快(特别适合于临时表)</li>
+<li>引擎类型可以互用,但是外键不能跨引擎</li>
+<li>alter table用于更改表结构,必须给出以下信息:<br>在alter table之后必须要给出要更改的表名(该表必须存在,否则将出错)<br>所做更改的列表</li>
+<li>删除表:drop table table_name;</li>
+<li>重命名表:rename table table_name1 to table_name2;<br>重命名多个表:rename table table1 to table2,table3 to table4;</li>
+</ol>
+<p>#视图的使用</p>
+<ol>
+<li>Mysql5之后才有视图</li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>–转载自码农翻身读书群 陌路流氓(353003874)–</p>
+<p>Mysql必知必会笔记(温习):</p>
+<p><strong>show命令的常用使用</strong></p>
+<p>–查看有哪些库</p>
+<ol>
+<li>show databases;</li>]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[clean code notes]]></title>
+    <link href="http://yoursite.com/2016/08/30/clean-code-note/"/>
+    <id>http://yoursite.com/2016/08/30/clean-code-note/</id>
+    <published>2016-08-30T04:12:57.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u6709_u610F_u4E49_u7684_u547D_u540D"><a href="#u6709_u610F_u4E49_u7684_u547D_u540D" class="headerlink" title="有意义的命名"></a>有意义的命名</h2><h3 id="u540D_u526F_u5176_u5B9E"><a href="#u540D_u526F_u5176_u5B9E" class="headerlink" title="名副其实"></a>名副其实</h3><ul>
+<li>为你的class field method variable取一个有表达力的名字，避免采用注释</li>
+<li>消除魔法数字</li>
+</ul>
+<h3 id="u907F_u514D_u8BEF_u5BFC"><a href="#u907F_u514D_u8BEF_u5BFC" class="headerlink" title="避免误导"></a>避免误导</h3><ul>
+<li>避免取名的时候引起迷惑，accountList -&gt; accounts/accountGroup</li>
+<li>避免因为同样的拼写方式带来的歧义 l和1</li>
+</ul>
+<h3 id="u505A_u6709_u610F_u4E49_u7684_u533A_u5206"><a href="#u505A_u6709_u610F_u4E49_u7684_u533A_u5206" class="headerlink" title="做有意义的区分"></a>做有意义的区分</h3><ul>
+<li>避免使用数字作为变量的命名 反模式 ：a1 a2 a3</li>
+<li>对函数的命名做有意义的区分 反模式 ：getAccounts getAccountInfo getAccount</li>
+<li>有意义的命名对于搜索会提供便利</li>
+<li>不要为你的变量命名加上类型 反模式：phoneString</li>
+</ul>
+<h3 id="u63A5_u53E3_u548C_u5B9E_u73B0"><a href="#u63A5_u53E3_u548C_u5B9E_u73B0" class="headerlink" title="接口和实现"></a>接口和实现</h3><ul>
+<li>对于接口的命名不要使用先导词 IShapeFactory -&gt; ShapeFactory </li>
+</ul>
+<h3 id="u7C7B_u540D"><a href="#u7C7B_u540D" class="headerlink" title="类名"></a>类名</h3><p>类名和对象名应该是名次短语，如Customer、Account、AddressParse。避免使用Manager、Process、Data或者Info这样的类名。类名不应当是动词。</p>
+<h3 id="u65B9_u6CD5_u540D"><a href="#u65B9_u6CD5_u540D" class="headerlink" title="方法名"></a>方法名</h3><p>方法名应当是动词或者动词短语，如postPayment、deletePage、save。属性访问器、修改器和断言应该根据其值命名，并依Javabean标准加上get/set和is前缀。<br>构造器进行重构时，使用静态工厂方法要优于new<br><figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Complex</span> fulcrumPoint = <span class="type">Complex</span>.FromRealNumber(<span class="number">23.0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>优于<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Complex fulcrumPoint = <span class="keyword">new</span> Complex(<span class="number">23.0</span>);</span><br></pre></td></tr></table></figure></p>
+<p>可以通过将构造器private的方法，强制使用此种命名手段。</p>
+<h3 id="u6BCF_u4E2A_u6982_u5FF5_u5BF9_u5E94_u4E00_u4E2A_u8BCD"><a href="#u6BCF_u4E2A_u6982_u5FF5_u5BF9_u5E94_u4E00_u4E2A_u8BCD" class="headerlink" title="每个概念对应一个词"></a>每个概念对应一个词</h3><p>采用同一类型的命名规则，Controller 和 Manager选择一个使用，不需要混合使用。<br>避免使用双关语，add insert save append 某种意义上可能都会表达同一件事。</p>
+<h3 id="u6DFB_u52A0_u6709_u610F_u4E49_u7684_u8BED_u5883"><a href="#u6DFB_u52A0_u6709_u610F_u4E49_u7684_u8BED_u5883" class="headerlink" title="添加有意义的语境"></a>添加有意义的语境</h3><p>为你的方法名加上语境吧，save -&gt; saveAccount</p>
+<h2 id="u5982_u4F55_u5199_u597D_u51FD_u6570"><a href="#u5982_u4F55_u5199_u597D_u51FD_u6570" class="headerlink" title="如何写好函数"></a>如何写好函数</h2><ul>
+<li>短小 （10行内）</li>
+<li>代码块和缩进，if、else、while等语句要有正确的缩进，不能写在一行</li>
+<li>只做一件事，方便复用</li>
+<li>每个函数一个抽象层级，不要讲不同抽象层级的代码放在一块</li>
+<li>利用多态消除switch语句</li>
+<li>使用描述性的名称，不要害怕名称过长，函数名称要描述函数的作用</li>
+</ul>
+<h3 id="u51FD_u6570_u53C2_u6570"><a href="#u51FD_u6570_u53C2_u6570" class="headerlink" title="函数参数"></a>函数参数</h3><ul>
+<li>函数参数的个数最好不要操作3个</li>
+<li>参数个数过多时，将其封装为对象</li>
+<li>使用异常代替错误返回码，简化代码结构</li>
+<li>由于try/catch的原因，导致我们的代码丑陋不堪，我们可以讲主体部分逻辑代码抽离成为函数，简化代码结构。</li>
+<li>使用异常类代替枚举错误码，因为枚举类型会在编译器就运行，所以当添加枚举类型的时候需要重新编译使用该枚举的所有类。</li>
+<li>消除重复</li>
+</ul>
+<h2 id="u6570_u636E_u3001_u5BF9_u8C61_u7684_u53CD_u5BF9_u79F0_u6027"><a href="#u6570_u636E_u3001_u5BF9_u8C61_u7684_u53CD_u5BF9_u79F0_u6027" class="headerlink" title="数据、对象的反对称性"></a>数据、对象的反对称性</h2><p>面向过程代码便于在不改动既有数据结构的前提下添加新函数，面向对象代码便于在不改动既有函数的前提下添加新类。</p>
+<p>过程式代码难以添加数据结构，因为必须修改所有函数，面向对象代码难以添加新函数，因为必须修改所有的类</p>
+<h2 id="u7C7B"><a href="#u7C7B" class="headerlink" title="类"></a>类</h2><ul>
+<li>类应该保证短小</li>
+<li>类应该保证单一职能原则、只有保证了此原则，类才会更加内聚</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u6709_u610F_u4E49_u7684_u547D_u540D"><a href="#u6709_u610F_u4E49_u7684_u547D_u540D" class="headerlink" title="有意义的命名"></a>有意义的命名</h2]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[企业应用架构模式学习笔记]]></title>
+    <link href="http://yoursite.com/2016/08/29/%E4%BC%81%E4%B8%9A%E5%BA%94%E7%94%A8%E6%9E%B6%E6%9E%84%E6%A8%A1%E5%BC%8F%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/08/29/企业应用架构模式学习笔记/</id>
+    <published>2016-08-29T08:27:46.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h2 id="u5206_u5C42"><a href="#u5206_u5C42" class="headerlink" title="分层"></a>分层</h2><p>表现层|领域层|数据层</p>
+<h3 id="u7CFB_u7EDF_u5206_u5C42_u7684_u597D_u5904"><a href="#u7CFB_u7EDF_u5206_u5C42_u7684_u597D_u5904" class="headerlink" title="系统分层的好处"></a>系统分层的好处</h3><ul>
+<li>在无需过多了解其他层次的基础上，可以将某一层作为一个有机整体来理解。例如，无需了解以太网的工作细节，就可以在tcp上构建ftp服务</li>
+<li>可以替换某层的具体实现（针对接口编程）</li>
+<li>可以将层次间的依赖减到最低</li>
+<li>分层有利于变准化的工作。tcp和ip就是关于他们各自层次如何工作的标准</li>
+<li>一旦构建好某一个层次，就可以用它为很多上层服务提供支持。因此tcp/ip同时被ftp/telnet/ssh/http使用。</li>
+</ul>
+<h3 id="u5206_u5C42_u7684_u7F3A_u9677"><a href="#u5206_u5C42_u7684_u7F3A_u9677" class="headerlink" title="分层的缺陷"></a>分层的缺陷</h3><ul>
+<li>级联修改，分层之后如果有功能修改可能会需要每层都进行修改。</li>
+<li>影响性能，层次太多调用次数过多会影响性能。</li>
+</ul>
+<h3 id="note"><a href="#note" class="headerlink" title="note"></a>note</h3><ul>
+<li>分层的粒度不一定的package级别的，也可以是class或者method. 需要根据实际情况进行选择。</li>
+<li>领域层和数据层不要依赖表现层。</li>
+<li>区分领域逻辑和其他逻辑（request/response 的相关逻辑数据其他逻辑）</li>
+<li>事务脚本（贫血型）和领域模型（充血型）</li>
+<li>尽可能保证代码在单一进程内完成。</li>
+</ul>
+<h3 id="u4E8B_u52A1_u811A_u672C"><a href="#u4E8B_u52A1_u811A_u672C" class="headerlink" title="事务脚本"></a>事务脚本</h3><p>从表示层获得输入，进行校验和计算处理、将数据存储到数据库中、以及调用其他系统的操作等。然后，该过程将更多的数据返回给展示层， 中间可能要进行大量的计算来组织和整理返回值。基本的组织方式是让每一个过程对应的用户可能做的一个动作。所以，我们可以将这一模式想象成一个动作或者业务事务的脚本。</p>
+<p><strong>优点</strong></p>
+<ul>
+<li>大多数人能够理解的简单过程模型</li>
+<li>能够与一个使用行数据入口或者表数据入口的简单数据源层进行很好的协作</li>
+<li>设定事务边界的方法显而易见：一个事务始于其脚本的打开，终止于脚本的关闭。很容易用工具在幕后设定事务边界。</li>
+</ul>
+<p><strong>缺点</strong></p>
+<p>领域逻辑复杂的时候事务脚本的方式就会出现很多问题。</p>
+<ul>
+<li>多个事务存在相同的操作的时候，事务脚本中就会出现很多重复的冗余代码。</li>
+<li>领域结构混乱</li>
+</ul>
+<p><strong>解决方案</strong></p>
+<p>引入对象，使用领域模型，在开始的时候主要围绕领域中名词来进行组织，例如：租赁系统中的租约、资产等。进行校验和计算的逻辑会至于领域模型中。用领域模型而不是事务脚本正是面相对象程序员推崇的“理论体系转换”的精髓。</p>
+<p>在领域模型中，不再是一个过程来控制用户某一动作的逻辑，而是由每一个对象都承担一部分相关逻辑。</p>
+<h3 id="u6620_u5C04_u5230_u5173_u7CFB_u6570_u636E_u5E93"><a href="#u6620_u5C04_u5230_u5173_u7CFB_u6570_u636E_u5E93" class="headerlink" title="映射到关系数据库"></a>映射到关系数据库</h3><p>简单的事务脚本模型中我们可以讲领域对象直接与数据库表字段进行对应，而在复杂的领域模型中我们通常需要构建一个数据映射器来与数据库表的字段进行一一映射，这样我们的领域对象可以使用映射对象来进行数据库操作。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h2 id="u5206_u5C42"><a href="#u5206_u5C42" class="headerlink" title="分层"></a>分层</h2><p>表现层|领域层|数据层</p>
+<h3 id="u7CFB_u7EDF_u5206_u5C42_u768]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[babun的powerline字体配置]]></title>
+    <link href="http://yoursite.com/2016/08/25/babun%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2016/08/25/babun字体配置/</id>
+    <published>2016-08-25T02:13:14.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h3><p>下载babun到我的windows环境中之后，我准备开始切换主题，但是这个时候我开始发现各种乱码？</p>
+<h3 id="u89E3_u51B3_u601D_u8DEF"><a href="#u89E3_u51B3_u601D_u8DEF" class="headerlink" title="解决思路"></a>解决思路</h3><p>基于我在mac上配置过程我知道我应该先安装powerline status.然后下载字体。</p>
+<p>最开始我按照这种思路进行配置，发现并没有任何效果，最后在babun的论坛中找到了类似的出题思路，需要讲字体下载到windows的字体库中：windows/fonts/~.</p>
+<p>下载完成之后我可以在terminal的opation中设置字体，但是现在还有一个问题就是，terminal中的字体设置会出现仅仅列出了很少的字体配置，查资料得知，在babun的~/.minttyrc文件中保存的是babun的字体配置文件，然后将其修改为合适的字体即可。</p>
+<h3 id="babun__u63D0_u793A_u4FE1_u606F_u914D_u7F6E"><a href="#babun__u63D0_u793A_u4FE1_u606F_u914D_u7F6E" class="headerlink" title="babun 提示信息配置"></a>babun 提示信息配置</h3><p>zsh的很多主题的左边都会显示user and hostname 的信息，会影响美观，这个时候可以在zshconfig中加入这样一段配置<br><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">prompt_context()&#123;</span><br><span class="line">    prompt_segment balck <span class="keyword">default</span> <span class="string">"chen"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="babun_link_setting"><a href="#babun_link_setting" class="headerlink" title="babun link setting"></a>babun link setting</h3><p>每次当我利用wox打开babun的时候，总会默认使用bash. 然后我就要手动zsh切换一下，觉得很不爽。<br>于是我把babun.link的目标修改为C:\Users\Administrator.babun\cygwin\bin\mintty.exe /bin/zsh.exe就可以解决我的问题了。</p>
+<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p>学好英语真的很重要，因为我在查找资料过程中看到的有价值的信息都是英文的，如果读不懂英文真的会错过好多有用的东西。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h3><p>下载babun到我的windows环境中之后，我准备开始切换主题，但是这个时候我开始发现各种乱码？</p]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[windows平台PowerLine字体配置]]></title>
+    <link href="http://yoursite.com/2016/08/24/windows%E5%B9%B3%E5%8F%B0PowerLine%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2016/08/24/windows平台PowerLine字体配置/</id>
+    <published>2016-08-24T06:09:15.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>公司的电脑一直都是windows的环境，所以配置起来一直很麻烦，这段时间一直在玩命令行，发现windows上关于powerline font的配置和linux or mac os上有很大的差别，所以记录一下以免以后再遇到此坑。</p>
+<h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>linux中powerline font的配置非常简单，从github中download font的字体库之后，执行一下shell脚本就可以完成字体的注册。<br>windows环境中我用的terminal是babun,之前一直想以同样的方式进行处理，但是发现不起作用，最后在babun的官方问答中找到了答案。（能看懂英文是多么的重要）</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">This is not an error. Btw you have to <span class="operator"><span class="keyword">install</span> the fonts <span class="keyword">on</span> your host <span class="keyword">system</span>. Just download the powerline fonts <span class="keyword">and</span> <span class="keyword">install</span> them <span class="keyword">into</span> your Windows fonts <span class="keyword">directory</span>. <span class="keyword">Then</span> you have <span class="keyword">to</span> <span class="keyword">change</span> <span class="keyword">to</span> mintty font (Options -&gt; <span class="built_in">Text</span>) <span class="keyword">f</span>.<span class="keyword">e</span>. <span class="keyword">to</span> <span class="string">"Dejavu Sans Mono for Powerline"</span>.</span></span><br></pre></td></tr></table></figure>
+<p>简单说来就是：需要讲字体文件copy到系统的字体目录（c:/windows/fonts/）中，然后在terminal的设置中选中相关的字体就可以了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>公司的电脑一直都是windows的环境，所以配置起来一直很麻烦，这段时间一直在玩命令行，发现window]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Jenkins服务搭建]]></title>
+    <link href="http://yoursite.com/2016/08/23/Jenkins%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA/"/>
+    <id>http://yoursite.com/2016/08/23/Jenkins服务搭建/</id>
+    <published>2016-08-23T06:27:00.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>在我现在的工作环境中发布版本的流程是这样的，利用maven构建出war，之后手工上传到服务器上，然后在服务器上运行部署war的脚本（停掉tomcat、替换war、启动tomcat）.至此项目的发布结束。</p>
+<p>这种手工发布的方式带来的问题就是在测试过程中，会频繁的修改代码发布版本，这样就会浪费到很多时间，而且项目组里面只有一位同事对linux环境比较熟悉，所以每次都是他手工进行此项操作，有时候多个项目会并行测试的时候，他就忙不过来了。</p>
+<p>之前一直想把项目发布这一块的工作进行自动化，但是之前知识储备不够，所以一直没有进行下去，现在经过一段时间的学习之后对Maven/Git比较熟悉了，所以可以尝试使用Jenkins对我们的项目进行集成了。</p>
+<h3 id="u914D_u7F6Ejenkins_u670D_u52A1"><a href="#u914D_u7F6Ejenkins_u670D_u52A1" class="headerlink" title="配置jenkins服务"></a>配置jenkins服务</h3><p>受公司网络环境限制，我仅在我本地搭建了Jenkins的服务。</p>
+<p><strong>下载Jenkins的war包、并安装相关插件。</strong></p>
+<p>在tomcat中部署该war，部署成功之后我们就可以在浏览器中看到Jenkins的初始化页面。这个时候说明我们的Jenkins服务已经启动成功了。<br>在系统管理的插件管理中可以安装我们需要的插件：Git Maven SSH SVN …</p>
+<p><strong>创建一个Job</strong></p>
+<p>在Jenkins的主页面中新建一个任务，选择一个Maven项目，或者一个自由风格的项目。两种方式我都进行尝试过，当我想利用Maven的pom.xml自动帮我构建的时候，我选择的是Maven项目，当我想通过自己配置Maven 命令的时候我选择是自由风格的项目。<br>默认的项目可以从SVN/Git仓库中拉取最近的代码进行构建，但是因为windows中Git和Maven的环境配置经常出错，所以我就选择了本地的工作空间，我将本地项目的目录作为工作空间。</p>
+<p>配置构建周期，根据实际情况，我们项目需要的时定时的进行构建，所以我在构建触发器中选择了Build periodically : 0 10,12,15,18 <em>*</em>.在每天的十点 十二点 下午三点和下午六点进行定时构建任务。</p>
+<p>配置构建后操作，在项目构建完成之后，我们需要讲package通过ssh上传到服务器上，这个时候我们需要用到public over SSH插件。安装完此插件之后我们就可以在系统设置中配置ssh服务的相关参数了。</p>
+<p>参数包括 服务器的username / password /remote directory等，完成此处的配置之后我们就可以在构建配置中添加一个构建后的ssh操作，需要将本地的war上传的服务器的某个目录，然后执行一个shell脚本将war替换到webapp中并重新启动一下tomcat就可以了。<br>    至此就可以完成Jenkins的构建了。</p>
+<blockquote>
+<p>参考资料 ： <a href="http://blog.csdn.net/evankaka/article/details/50518959" target="_blank" rel="external">http://blog.csdn.net/evankaka/article/details/50518959</a></p>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>在我现在的工作环境中发布版本的流程是这样的，利用maven构建出war，之后手工上传到服务器上，然后在服]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[Maven为不同环境打包]]></title>
+    <link href="http://yoursite.com/2016/08/22/maven%E4%B8%BA%E4%B8%8D%E5%90%8C%E7%8E%AF%E5%A2%83%E6%89%93%E5%8C%85/"/>
+    <id>http://yoursite.com/2016/08/22/maven为不同环境打包/</id>
+    <published>2016-08-22T03:20:03.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<p>开发中我们经常会需要讲不同的组装不同的war(test/app/pro)到服务器上，但是不同的war有一些差异化的文件，这就需要我们抽象出差异化的部分，统一进行处理。</p>
+<h3 id="u65B9_u6848_u4E00"><a href="#u65B9_u6848_u4E00" class="headerlink" title="方案一"></a>方案一</h3><p>建立多个不同的pom, package时制定不同的pom，每个pom中指定差异化的文件的package方法。<br>maven war plugin中我使用webresources 中的 directory 和 targetPath 来制定差异化的文件。<br><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">mvn clean package -f pom_test.<span class="keyword">xml</span></span><br><span class="line"><span class="title">or</span> </span><br><span class="line">mvn clean package -f pom_pro.<span class="keyword">xml</span></span><br><span class="line"><span class="title">or</span></span><br><span class="line">mvn clean package -f pom_app.xml</span><br></pre></td></tr></table></figure></p>
+<p>缺点：这种方式的缺点就是多个pom之间重复配置太多，耦合太严重，不易维护。</p>
+<h3 id="u65B9_u6848_u4E8C"><a href="#u65B9_u6848_u4E8C" class="headerlink" title="方案二"></a>方案二</h3><p>利用maven的profile进行个性化配置在Maven中我们可以配置多个profile,这样一来我们就可以配置多个环境的profile.<br>结合war插件制定差异化的位置，这样我们就可以实现为不同环境package.</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">调用命令：mvn clean package -D maven.test.skip=true package -P pro</span><br><span class="line"></span><br><span class="line">配置：</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="title">groupId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="title">artifactId</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="title">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="title">configuration</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">packagingExcludes</span>&gt;</span></span><br><span class="line">			<span class="comment">&lt;!-- WEB-INF/classes/com/thinkgem/jeesite/** --&gt;</span></span><br><span class="line">			WEB-INF/classes/org/apache/ibatis/**,</span><br><span class="line">			WEB-INF/classes/org/mybatis/spring/**,</span><br><span class="line">			<span class="comment">&lt;!-- ignore different env setting  --&gt;</span></span><br><span class="line">			WEB-INF/classes/war/**</span><br><span class="line">		<span class="tag">&lt;/<span class="title">packagingExcludes</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">warSourceExcludes</span>&gt;</span></span><br><span class="line">			static/bootstrap/2.3.1/docs/**</span><br><span class="line">		<span class="tag">&lt;/<span class="title">warSourceExcludes</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">webappDirectory</span>&gt;</span>$&#123;project.build.directory&#125;/$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="title">webappDirectory</span>&gt;</span><span class="comment">&lt;!-- </span><br><span class="line">		&lt;webXml&gt;$&#123;project.basedir&#125;/target/jspweb.xml&lt;/webXml&gt; --&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">warName</span>&gt;</span>$&#123;project.artifactId&#125;<span class="tag">&lt;/<span class="title">warName</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="title">webResources</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="title">resource</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="title">directory</span>&gt;</span>$&#123;runtime.env&#125;<span class="tag">&lt;/<span class="title">directory</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="title">targetPath</span>&gt;</span>WEB-INF/classes<span class="tag">&lt;/<span class="title">targetPath</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="title">resource</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="title">webResources</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="title">configuration</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">plugin</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">id</span>&gt;</span>app<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">runtime.env</span>&gt;</span>src/main/resources/war/pro<span class="tag">&lt;/<span class="title">runtime.env</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">id</span>&gt;</span>demo<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">runtime.env</span>&gt;</span>src/main/resources/war/demo<span class="tag">&lt;/<span class="title">runtime.env</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="title">profile</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">id</span>&gt;</span>pro<span class="tag">&lt;/<span class="title">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="title">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="title">runtime.env</span>&gt;</span>src/main/resources/war/pro<span class="tag">&lt;/<span class="title">runtime.env</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="title">properties</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="title">profile</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>至此就可以解决我们的问题了。</p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>开发中我们经常会需要讲不同的组装不同的war(test/app/pro)到服务器上，但是不同的war有一些差异化的文件，这就需要我们抽象出差异化的部分，统一进行处理。</p>
+<h3 id="u65B9_u6848_u4E00"><a href="#u65B9_u6848_]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
+    <title><![CDATA[git初始化配置]]></title>
+    <link href="http://yoursite.com/2016/08/09/git%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
+    <id>http://yoursite.com/2016/08/09/git初始化配置/</id>
+    <published>2016-08-09T01:54:52.000Z</published>
+    <updated>2016-10-04T09:53:03.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="git_config_setting"><a href="#git_config_setting" class="headerlink" title="git config setting"></a>git config setting</h3><pre><code>git config user.name “chenwenbo&quot;
+git config user.email “594017622&quot;
+</code></pre><h3 id="generate_ssh_key"><a href="#generate_ssh_key" class="headerlink" title="generate ssh key"></a>generate ssh key</h3><pre><code>type: ssh-keygen
+copy .pub to github account ssh setting 
+</code></pre>]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="git_config_setting"><a href="#git_config_setting" class="headerlink" title="git config setting"></a>git config setting</h3><pre><cod]]>
+    </summary>
+    
+  </entry>
+  
+</feed>
