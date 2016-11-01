@@ -4,7 +4,7 @@
   <subtitle><![CDATA[但行好事，莫问前程。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-10-30T09:49:21.000Z</updated>
+  <updated>2016-11-01T09:12:27.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[面试中应该弄清楚的问题]]></title>
+    <link href="http://yoursite.com/2016/11/01/%E9%9D%A2%E8%AF%95%E4%B8%AD%E5%BA%94%E8%AF%A5%E5%BC%84%E6%B8%85%E6%A5%9A%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2016/11/01/面试中应该弄清楚的问题/</id>
+    <published>2016-11-01T09:08:42.000Z</published>
+    <updated>2016-11-01T09:12:27.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="u57FA_u672C_u798F_u5229_u5F85_u9047"><a href="#u57FA_u672C_u798F_u5229_u5F85_u9047" class="headerlink" title="基本福利待遇"></a>基本福利待遇</h3><ul>
+<li>税前待遇</li>
+<li>五险一金</li>
+<li>五险一金公司公司和个人缴纳比例</li>
+<li>个人所得税</li>
+<li>加班补贴</li>
+</ul>
+<h3 id="u5176_u4ED6_u798F_u5229"><a href="#u5176_u4ED6_u798F_u5229" class="headerlink" title="其他福利"></a>其他福利</h3><ul>
+<li>补充医疗保险</li>
+<li>体检</li>
+<li>培训</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="u57FA_u672C_u798F_u5229_u5F85_u9047"><a href="#u57FA_u672C_u798F_u5229_u5F85_u9047" class="headerlink" title="基本福利待遇"></a>基本福利待遇</h3]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[git_rebase]]></title>
@@ -793,23 +818,6 @@ fulltext(note_text)
     <summary type="html">
     <![CDATA[<p>开发中我们经常会需要讲不同的组装不同的war(test/app/pro)到服务器上，但是不同的war有一些差异化的文件，这就需要我们抽象出差异化的部分，统一进行处理。</p>
 <h3 id="u65B9_u6848_u4E00"><a href="#u65B9_u6848_]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[git初始化配置]]></title>
-    <link href="http://yoursite.com/2016/08/09/git%E5%88%9D%E5%A7%8B%E5%8C%96%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2016/08/09/git初始化配置/</id>
-    <published>2016-08-09T01:54:52.000Z</published>
-    <updated>2016-10-04T09:53:03.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="git_config_setting"><a href="#git_config_setting" class="headerlink" title="git config setting"></a>git config setting</h3><pre><code>git config user.name “chenwenbo&quot;
-git config user.email “594017622&quot;
-</code></pre><h3 id="generate_ssh_key"><a href="#generate_ssh_key" class="headerlink" title="generate ssh key"></a>generate ssh key</h3><pre><code>type: ssh-keygen
-copy .pub to github account ssh setting 
-</code></pre>]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="git_config_setting"><a href="#git_config_setting" class="headerlink" title="git config setting"></a>git config setting</h3><pre><cod]]>
     </summary>
     
   </entry>
