@@ -4,7 +4,7 @@
   <subtitle><![CDATA[但行好事，莫问前程。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-13T16:10:54.000Z</updated>
+  <updated>2016-11-16T09:49:54.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,56 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[《精进》学习笔记]]></title>
+    <link href="http://yoursite.com/2016/11/16/%E3%80%8A%E7%B2%BE%E8%BF%9B%E3%80%8B%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/"/>
+    <id>http://yoursite.com/2016/11/16/《精进》学习笔记/</id>
+    <published>2016-11-16T09:40:53.000Z</published>
+    <updated>2016-11-16T09:49:54.000Z</updated>
+    <content type="html"><![CDATA[<p>知识的梳理和反思</p>
+<ul>
+<li>针对当前的学习材料，我已经具备了哪些相关的知识？</li>
+<li>针对当前的学习材料，我又学到了哪些新的知识？这些知识对原有的知识构成了何种补充或者挑战？</li>
+<li>针对当前的学习材料，还有哪些未知的东西，且这些东西我通过简单的探索就可以了解?</li>
+<li>针对当前的学习材料，哈有哪些未知的东西，无法轻易地获得解答，同时又有价值成为我长期去探索的问题？</li>
+</ul>
+<p>如何去反思？</p>
+<ul>
+<li><p>信息</p>
+<ul>
+<li>在做这件事时我利用了哪些信息？其中哪些信息是最关键的？</li>
+<li>这些信息的来源？其中哪些来源是证明很有价值？</li>
+<li>遗漏了哪些信息？这些信息可以怎么得到？</li>
+</ul>
+</li>
+<li><p>预期</p>
+<ul>
+<li>在做事情之前，是否对事情的过程和结果形成了正确的预期？</li>
+<li>我为什么会形成这样的预期？是什么造成了预期和事实之间的偏差？</li>
+<li>我的预期是否促进或者阻碍了事情的进程？今后应该如何管理自己的预期？</li>
+</ul>
+</li>
+<li><p>结果</p>
+<ul>
+<li>怎样描述这件事情的结果？</li>
+<li>在描述和评价这件事的结果时我用了哪些指标？这些指标是否需要改进？</li>
+<li>结果需要哪些改进？如何改进？</li>
+</ul>
+</li>
+<li><p>进度<br>  - </p>
+</li>
+</ul>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p>知识的梳理和反思</p>
+<ul>
+<li>针对当前的学习材料，我已经具备了哪些相关的知识？</li>
+<li>针对当前的学习材料，我又学到了哪些新的知识？这些知识对原有的知识构成了何种补充或者挑战？</li>
+<li>针对当前的学习材料，还有哪些未知的东西，且这些东西我通]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[mokito_annotations]]></title>
@@ -784,23 +834,6 @@ fulltext(note_text)
 ]]></content>
     <summary type="html">
     <![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h3><p>下载babun到我的windows环境中之后，我准备开始切换主题，但是这个时候我开始发现各种乱码？</p]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[windows平台PowerLine字体配置]]></title>
-    <link href="http://yoursite.com/2016/08/24/windows%E5%B9%B3%E5%8F%B0PowerLine%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2016/08/24/windows平台PowerLine字体配置/</id>
-    <published>2016-08-24T06:09:15.000Z</published>
-    <updated>2016-10-04T09:53:03.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>公司的电脑一直都是windows的环境，所以配置起来一直很麻烦，这段时间一直在玩命令行，发现windows上关于powerline font的配置和linux or mac os上有很大的差别，所以记录一下以免以后再遇到此坑。</p>
-<h3 id="u914D_u7F6E"><a href="#u914D_u7F6E" class="headerlink" title="配置"></a>配置</h3><p>linux中powerline font的配置非常简单，从github中download font的字体库之后，执行一下shell脚本就可以完成字体的注册。<br>windows环境中我用的terminal是babun,之前一直想以同样的方式进行处理，但是发现不起作用，最后在babun的官方问答中找到了答案。（能看懂英文是多么的重要）</p>
-<figure class="highlight vbnet"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">This <span class="keyword">is</span> <span class="keyword">not</span> an <span class="keyword">error</span>. Btw you have <span class="keyword">to</span> install the fonts <span class="keyword">on</span> your host system. Just download the powerline fonts <span class="keyword">and</span> install them <span class="keyword">into</span> your Windows fonts directory. <span class="keyword">Then</span> you have <span class="keyword">to</span> change <span class="keyword">to</span> mintty font (Options -&gt; <span class="keyword">Text</span>) f.e. <span class="keyword">to</span> <span class="string">"Dejavu Sans Mono for Powerline"</span>.</div></pre></td></tr></table></figure>
-<p>简单说来就是：需要讲字体文件copy到系统的字体目录（c:/windows/fonts/）中，然后在terminal的设置中选中相关的字体就可以了。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u80CC_u666F"><a href="#u80CC_u666F" class="headerlink" title="背景"></a>背景</h3><p>公司的电脑一直都是windows的环境，所以配置起来一直很麻烦，这段时间一直在玩命令行，发现window]]>
     </summary>
     
   </entry>
