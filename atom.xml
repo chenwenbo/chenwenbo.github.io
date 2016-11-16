@@ -4,7 +4,7 @@
   <subtitle><![CDATA[但行好事，莫问前程。]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-16T10:09:04.000Z</updated>
+  <updated>2016-11-16T11:01:13.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -13,6 +13,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[freemarker_expression_list]]></title>
+    <link href="http://yoursite.com/2016/11/16/freemarker-expression-list/"/>
+    <id>http://yoursite.com/2016/11/16/freemarker-expression-list/</id>
+    <published>2016-11-16T10:59:30.000Z</published>
+    <updated>2016-11-16T11:01:13.000Z</updated>
+    <content type="html"><![CDATA[<p><a href="http://freemarker.org/docs/pgui_datamodel_method.html" target="_blank" rel="external">http://freemarker.org/docs/pgui_datamodel_method.html</a></p>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="http://freemarker.org/docs/pgui_datamodel_method.html" target="_blank" rel="external">http://freemarker.org/docs/pgui_datamodel_]]>
+    </summary>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[《精进》学习笔记]]></title>
@@ -858,26 +872,6 @@ fulltext(note_text)
     <summary type="html">
     <![CDATA[<h2 id="u5206_u5C42"><a href="#u5206_u5C42" class="headerlink" title="分层"></a>分层</h2><p>表现层|领域层|数据层</p>
 <h3 id="u7CFB_u7EDF_u5206_u5C42_u768]]>
-    </summary>
-    
-  </entry>
-  
-  <entry>
-    <title><![CDATA[babun的powerline字体配置]]></title>
-    <link href="http://yoursite.com/2016/08/25/babun%E5%AD%97%E4%BD%93%E9%85%8D%E7%BD%AE/"/>
-    <id>http://yoursite.com/2016/08/25/babun字体配置/</id>
-    <published>2016-08-25T02:13:14.000Z</published>
-    <updated>2016-10-04T09:53:03.000Z</updated>
-    <content type="html"><![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h3><p>下载babun到我的windows环境中之后，我准备开始切换主题，但是这个时候我开始发现各种乱码？</p>
-<h3 id="u89E3_u51B3_u601D_u8DEF"><a href="#u89E3_u51B3_u601D_u8DEF" class="headerlink" title="解决思路"></a>解决思路</h3><p>基于我在mac上配置过程我知道我应该先安装powerline status.然后下载字体。</p>
-<p>最开始我按照这种思路进行配置，发现并没有任何效果，最后在babun的论坛中找到了类似的出题思路，需要讲字体下载到windows的字体库中：windows/fonts/~.</p>
-<p>下载完成之后我可以在terminal的opation中设置字体，但是现在还有一个问题就是，terminal中的字体设置会出现仅仅列出了很少的字体配置，查资料得知，在babun的~/.minttyrc文件中保存的是babun的字体配置文件，然后将其修改为合适的字体即可。</p>
-<h3 id="babun__u63D0_u793A_u4FE1_u606F_u914D_u7F6E"><a href="#babun__u63D0_u793A_u4FE1_u606F_u914D_u7F6E" class="headerlink" title="babun 提示信息配置"></a>babun 提示信息配置</h3><p>zsh的很多主题的左边都会显示user and hostname 的信息，会影响美观，这个时候可以在zshconfig中加入这样一段配置<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="title">prompt_context</span><span class="params">()</span></span>&#123;</div><div class="line">    prompt_segment balck default <span class="string">"chen"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<h3 id="babun_link_setting"><a href="#babun_link_setting" class="headerlink" title="babun link setting"></a>babun link setting</h3><p>每次当我利用wox打开babun的时候，总会默认使用bash. 然后我就要手动zsh切换一下，觉得很不爽。<br>于是我把babun.link的目标修改为C:\Users\Administrator.babun\cygwin\bin\mintty.exe /bin/zsh.exe就可以解决我的问题了。</p>
-<h3 id="u611F_u609F"><a href="#u611F_u609F" class="headerlink" title="感悟"></a>感悟</h3><p>学好英语真的很重要，因为我在查找资料过程中看到的有价值的信息都是英文的，如果读不懂英文真的会错过好多有用的东西。</p>
-]]></content>
-    <summary type="html">
-    <![CDATA[<h3 id="u95EE_u9898"><a href="#u95EE_u9898" class="headerlink" title="问题"></a>问题</h3><p>下载babun到我的windows环境中之后，我准备开始切换主题，但是这个时候我开始发现各种乱码？</p]]>
     </summary>
     
   </entry>
